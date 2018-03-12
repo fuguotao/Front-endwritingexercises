@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>打字游戏</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<style>
+    body {
+        font-size:18px;
+    }
+
+    #app {
+
+    }
+
+    .layout {
+        width: 800px;
+        margin: 0 auto
+    }
+
+    .Tabsyz {
+    }
+
+    .Tabsyz ul {
+    }
+
+    .Tabsyz ul li {
+    }
+
+    .Tabsyz ul li a {
+    }
+    .NeiRong{
+        position:relative;
+    }
+    .PositionWord{
+        display: none;
+        letter-spacing: 5PX;
+        text-align: justify;
+        position: absolute;
+        top: 5px;
+        left: 0px;
+    }
+</style>
+<div id="app">
+    <div class="layout">
+        <div class="Tabsyz">
+            <ul>
+                <li>
+                    <a href="javascript:">中文</a>
+                </li>
+                <li>
+                    <a href="javascript:">英文</a>
+                </li>
+                <li>
+                    <a href="javascript:">自定义内容</a>
+                </li>
+            </ul>
+        </div>
+        <div class="prliplist" style="display:none">
+            <ul>
+                <li>dfasdfasfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdf</li>
+            </ul>
+        </div>
+        <div class="compareword">
+        </div>
+        <div class="XieZiBan" v-for="(mmc,iic) in DaDuanLuoChaiFens" :key="iic">
+            <div class="CanKao">
+                <span class="CanKaoBanZiTi" v-for="(m,i) in mmc" :key="i"
+                      :class="{red: m !== WatchWord[iic][i]&&typeof WatchWord[iic][i]!=='undefined',green:m === WatchWord[iic][i]}">{{m}}</span>
+            </div>
+            <div class="NeiRong">
+                <textarea autofocus v-model="XieRuNeiRong[iic]"></textarea>
+                <div class="PositionWord">
+                    <span  v-for="(m,i) in WatchWord[iic]" :class="{red:m!==DaZiLieBiao[i]}">{{m}}</span>
+                </div>
+            </div>
+        </div>
+        <div>{{XieRuNeiRong}}</div>
+        <pre>{{WatchWord}}</pre>
+    </div>
+
+</div>
+<script src="./vue.min.js"></script>
+<script>
+    Vue.config.devtools = true;
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            YuanNeiRong: '我是这里的内容，请输入我吧我是这里的内容我是这里的内容我是这里的内容我是这里的内容我是这里的内容我是这里的内容我是这里的内容我是这里的内容我是这里的内容我是这里的内容我是这里的内容我是这里的内容我是这里的内容我是这里的内容我是这里的内容我是这里的内容我是这里的内容我是这里的内容我是这里的内容我是这里的内容我是这里的内容我是这里的内容我是这里的内容我是这里的内容我是这里的内容',
+            DaZiLieBiao: [],
+            XieRuNeiRong: [],
+            DaDuanLuoChaiFens:[],
+        },
+        computed: {
+            WatchWord() {
+                var aa = [];
+                this.XieRuNeiRong.forEach((i,c,v)=>{
+                    if(i.length){
+                        aa.push(i.split(""))
+                    }else {
+                        aa.push(i)
+                    }
+                })
+                // return this.XieRuNeiRong.split("");
+                return aa;
+            },
+            DaDuanLuoChaiFen(){
+                // for(let i=this.YuanNeiRong.length;i--){
+                //
+                // }
+                // var cab =  this.DaZiLieBiao.concat();
+
+            }
+        },
+        created() {
+            this.DaZiLieBiao = this.YuanNeiRong.split("");
+            // console.log(this.WatchWord[5]);
+            // this.DaZiLieBiao.forEach((m,i,v)=>{
+                if(this.DaZiLieBiao.length>34){
+                    var hang = parseInt(this.DaZiLieBiao.length/34)+1;
+                    for(let c = 0;c<hang;c++){
+                        // var cc = v.splice(0,34)
+                        this.DaDuanLuoChaiFens.push(this.DaZiLieBiao.splice(0,34));
+                        this.XieRuNeiRong.push([])
+                    }
+                }else {
+
+                }
+            // });
+            // for(){
+
+            // }
+            this.DaDuanLuoChaiFens.push(this.DaZiLieBiao)
+            // return this.DaDuanLuoChaiFens
+        },
+        watch: {
+            WatchWord: {
+                handler(newValue, oldValue) {
+                    console.log(newValue);
+                    /* this.zhuanhaushuzu.map((m,i,u)=>{
+
+                    }) */
+                },
+                deep: true
+            },
+
+        }
+    })
+
+</script>
+</body>
+</html>
