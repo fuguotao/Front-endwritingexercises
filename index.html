@@ -8,7 +8,7 @@
 <body>
 <style>
     body {
-        font-size:18px;
+        font-size: 18px;
     }
 
     #app {
@@ -27,14 +27,17 @@
     }
 
     .Tabsyz ul li {
+        list-style: none;
     }
 
     .Tabsyz ul li a {
     }
-    .NeiRong{
-        position:relative;
+
+    .NeiRong {
+        position: relative;
     }
-    .PositionWord{
+
+    .PositionWord {
         display: none;
         letter-spacing: 5PX;
         text-align: justify;
@@ -71,17 +74,29 @@
                       :class="{red: m !== WatchWord[iic][i]&&typeof WatchWord[iic][i]!=='undefined',green:m === WatchWord[iic][i]}">{{m}}</span>
             </div>
             <div class="NeiRong">
-                <textarea autofocus v-model="XieRuNeiRong[iic]"></textarea>
+                <input ref="input01" autofocus="autofocus" v-model="XieRuNeiRong[iic]">
                 <div class="PositionWord">
-                    <span  v-for="(m,i) in WatchWord[iic]" :class="{red:m!==DaZiLieBiao[i]}">{{m}}</span>
+                    <span v-for="(m,i) in WatchWord[iic]" :class="{red:m!==DaZiLieBiao[i]}">{{m}}</span>
                 </div>
             </div>
         </div>
-        <div>{{XieRuNeiRong}}</div>
-        <pre>{{WatchWord}}</pre>
-    </div>
+        <div class="JiShiQi">
+            <div class="jshiqi_con">
+                <span>时间：<b class="time">12:21</b> </span>
+                <span>速度：<b> 35</b>字</span>
+                <span>进度：<b>0%</b></span>
+                <span>正确率：<b>0%</b></span>
+            </div>
+        </div>
 
+    </div>
+    <div style="position:fixed;font-size:12px;color:green;width:200px;height:100%;overflow-y:scroll;right:0px;top:0px; color:#fff;background:#000;padding:15px 5px;">
+        <!--<div>{{DaDuanLuoChaiFens}}</div>-->
+        <pre style="color:lawngreen">{{WatchWord}}</pre>
+        <pre style="color:red">{{XieRuNeiRong}}</pre>
+    </div>
 </div>
+
 <script src="./vue.min.js"></script>
 <script>
     Vue.config.devtools = true;
@@ -91,22 +106,22 @@
             YuanNeiRong: '我是这里的内容，请输入我吧我是这里的内容我是这里的内容我是这里的内容我是这里的内容我是这里的内容我是这里的内容我是这里的内容我是这里的内容我是这里的内容我是这里的内容我是这里的内容我是这里的内容我是这里的内容我是这里的内容我是这里的内容我是这里的内容我是这里的内容我是这里的内容我是这里的内容我是这里的内容我是这里的内容我是这里的内容我是这里的内容我是这里的内容我是这里的内容',
             DaZiLieBiao: [],
             XieRuNeiRong: [],
-            DaDuanLuoChaiFens:[],
+            DaDuanLuoChaiFens: [],
         },
         computed: {
             WatchWord() {
                 var aa = [];
-                this.XieRuNeiRong.forEach((i,c,v)=>{
-                    if(i.length){
+                this.XieRuNeiRong.forEach((i, c, v) => {
+                    if (i.length) {
                         aa.push(i.split(""))
-                    }else {
+                    } else {
                         aa.push(i)
                     }
                 })
                 // return this.XieRuNeiRong.split("");
                 return aa;
             },
-            DaDuanLuoChaiFen(){
+            DaDuanLuoChaiFen() {
                 // for(let i=this.YuanNeiRong.length;i--){
                 //
                 // }
@@ -118,16 +133,16 @@
             this.DaZiLieBiao = this.YuanNeiRong.split("");
             // console.log(this.WatchWord[5]);
             // this.DaZiLieBiao.forEach((m,i,v)=>{
-                if(this.DaZiLieBiao.length>34){
-                    var hang = parseInt(this.DaZiLieBiao.length/34)+1;
-                    for(let c = 0;c<hang;c++){
-                        // var cc = v.splice(0,34)
-                        this.DaDuanLuoChaiFens.push(this.DaZiLieBiao.splice(0,34));
-                        this.XieRuNeiRong.push([])
-                    }
-                }else {
-
+            if (this.DaZiLieBiao.length > 34) {
+                var hang = parseInt(this.DaZiLieBiao.length / 34) + 1;
+                for (let c = 0; c < hang; c++) {
+                    // var cc = v.splice(0,34)
+                    this.DaDuanLuoChaiFens.push(this.DaZiLieBiao.splice(0, 34));
+                    this.XieRuNeiRong.push([])
                 }
+            } else {
+
+            }
             // });
             // for(){
 
@@ -138,10 +153,21 @@
         watch: {
             WatchWord: {
                 handler(newValue, oldValue) {
-                    console.log(newValue);
+                    // console.log(newValue);
                     /* this.zhuanhaushuzu.map((m,i,u)=>{
 
                     }) */
+                    newValue.forEach((i, c, v) => {
+                        if (i instanceof Array) {
+                            i.forEach((ip, cp, vp) => {
+                                // console.log(ip)
+                                if (ip != this.DaDuanLuoChaiFens[c][cp]) {
+                                    console.log(cp)
+                                }
+                                // console.log(this.XieRuNeiRong)
+                            })
+                        }
+                    })
                 },
                 deep: true
             },

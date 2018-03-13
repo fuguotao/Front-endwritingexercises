@@ -1,4 +1,4 @@
-body {
+body ,*{
     font-family: '微软雅黑', 'Airay'
 }
 
@@ -11,7 +11,7 @@ body {
 }
 
 .green {
-    color: green
+    color: blue
 }
 
 .CanKaoBanZiTi {
@@ -28,7 +28,7 @@ body {
     text-align: justify;
 }
 
-.XieZiBan textarea {
+.XieZiBan input{
     border: none;
     font-family: 'Airay', '微软雅黑';
     width: 100%;
@@ -43,6 +43,6 @@ body {
     caret-color: black;height: 28px;
 }
 
-textarea:focus {
+input:focus {
     outline: none;
 }
