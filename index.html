@@ -82,10 +82,11 @@
         </div>
         <div class="JiShiQi">
             <div class="jshiqi_con">
-                <span>时间：<b class="time">12:21</b> </span>
+                <span>时间：<b class="time">{{time}}</b> </span>
                 <span>速度：<b> 35</b>字</span>
                 <span>进度：<b>0%</b></span>
                 <span>正确率：<b>0%</b></span>
+                <button @click="beginDaZi">开始</button>
             </div>
         </div>
 
@@ -103,10 +104,16 @@
     var vm = new Vue({
         el: '#app',
         data: {
-            YuanNeiRong: '我是这里的内容，请输入我吧我是这里的内容我是这里的内容我是这里的内容我是这里的内容我是这里的内容我是这里的内容我是这里的内容我是这里的内容我是这里的内容我是这里的内容我是这里的内容我是这里的内容我是这里的内容我是这里的内容我是这里的内容我是这里的内容我是这里的内容我是这里的内容我是这里的内容我是这里的内容我是这里的内容我是这里的内容我是这里的内容我是这里的内容我是这里的内容',
+            YuanNeiRong: 'font-family:Arial,Verdana,Tahoma,"宋体",Helvetica,sans-serif;',
             DaZiLieBiao: [],
             XieRuNeiRong: [],
             DaDuanLuoChaiFens: [],
+            time: {
+                h:{},
+                m:{},
+                s:{}
+            },
+
         },
         computed: {
             WatchWord() {
@@ -149,6 +156,18 @@
             // }
             this.DaDuanLuoChaiFens.push(this.DaZiLieBiao)
             // return this.DaDuanLuoChaiFens
+        },
+        methods: {
+            beginDaZi() {
+                var today = new Date(0,0,0);
+                var h = today.getHours()>=10?today.getHours():"0"+today.getHours();
+                var m = today.getMinutes()>=10?today.getMinutes():"0"+today.getMinutes();
+                var s = today.getSeconds()>=10?today.getSeconds():"0"+today.getSeconds();
+                today.getSeconds()today.getSeconds()++;
+                this.time = h + ":" + m + ":" + s;
+                console.log(this.time)
+                setTimeout(this.beginDaZi,1000);
+            }
         },
         watch: {
             WatchWord: {
