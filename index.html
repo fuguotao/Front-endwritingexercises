@@ -1,199 +1,225 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>打字游戏</title>
     <link rel="stylesheet" href="./style.css">
 </head>
+
 <body>
-<style>
-    body {
-        font-size: 18px;
-    }
-
-    #app {
-
-    }
-
-    .layout {
-        width: 800px;
-        margin: 0 auto
-    }
-
-    .Tabsyz {
-    }
-
-    .Tabsyz ul {
-    }
-
-    .Tabsyz ul li {
-        list-style: none;
-    }
-
-    .Tabsyz ul li a {
-    }
-
-    .NeiRong {
-        position: relative;
-    }
-
-    .PositionWord {
-        display: none;
-        letter-spacing: 5PX;
-        text-align: justify;
-        position: absolute;
-        top: 5px;
-        left: 0px;
-    }
-</style>
-<div id="app">
-    <div class="layout">
-        <div class="Tabsyz">
-            <ul>
-                <li>
-                    <a href="javascript:">中文</a>
-                </li>
-                <li>
-                    <a href="javascript:">英文</a>
-                </li>
-                <li>
-                    <a href="javascript:">自定义内容</a>
-                </li>
-            </ul>
-        </div>
-        <div class="prliplist" style="display:none">
-            <ul>
-                <li>dfasdfasfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdf</li>
-            </ul>
-        </div>
-        <div class="compareword">
-        </div>
-        <div class="XieZiBan" v-for="(mmc,iic) in DaDuanLuoChaiFens" :key="iic">
-            <div class="CanKao">
-                <span class="CanKaoBanZiTi" v-for="(m,i) in mmc" :key="i"
-                      :class="{red: m !== WatchWord[iic][i]&&typeof WatchWord[iic][i]!=='undefined',green:m === WatchWord[iic][i]}">{{m}}</span>
+    <style>
+        body {
+            font-size: 18px;
+        }
+        
+        #app {}
+        
+        .layout {
+            width: 800px;
+            margin: 0 auto
+        }
+        
+        .Tabsyz {}
+        
+        .Tabsyz ul {}
+        
+        .Tabsyz ul li {
+            list-style: none;
+        }
+        
+        .Tabsyz ul li a {}
+        
+        .NeiRong {
+            position: relative;
+        }
+        
+        .PositionWord {
+            display: none;
+            letter-spacing: 5PX;
+            text-align: justify;
+            position: absolute;
+            top: 5px;
+            left: 0px;
+        }
+    </style>
+    <div id="app">
+        <div class="layout">
+            <div class="Tabsyz">
+                <ul>
+                    <li>
+                        <a href="javascript:">中文</a>
+                    </li>
+                    <li>
+                        <a href="javascript:">英文</a>
+                    </li>
+                    <li>
+                        <a href="javascript:">自定义内容</a>
+                    </li>
+                </ul>
             </div>
-            <div class="NeiRong">
-                <input ref="input01" autofocus="autofocus" v-model="XieRuNeiRong[iic]">
-                <div class="PositionWord">
-                    <span v-for="(m,i) in WatchWord[iic]" :class="{red:m!==DaZiLieBiao[i]}">{{m}}</span>
+            <div class="prliplist" style="display:none">
+                <ul>
+                    <li>dfasdfasfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdf</li>
+                </ul>
+            </div>
+            <div class="compareword">
+            </div>
+            <div class="XieZiBan" v-for="(mmc,iic) in DaDuanLuoChaiFens" :key="iic">
+                <div class="CanKao">
+                    <span class="CanKaoBanZiTi" v-for="(m,i) in mmc" :key="i" :class="{red: m !== WatchWord[iic][i]&&typeof WatchWord[iic][i]!=='undefined',green:m === WatchWord[iic][i]}">{{m}}</span>
+                </div>
+                <div class="NeiRong">
+                    <input ref="input01" autofocus="autofocus" v-model="XieRuNeiRong[iic]">
+                    <div class="PositionWord">
+                        <span v-for="(m,i) in WatchWord[iic]" :class="{red:m!==DaZiLieBiao[i]}">{{m}}</span>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="JiShiQi">
-            <div class="jshiqi_con">
-                <span>时间：<b class="time">{{time}}</b> </span>
-                <span>速度：<b> 35</b>字</span>
-                <span>进度：<b>0%</b></span>
-                <span>正确率：<b>0%</b></span>
-                <button @click="beginDaZi">开始</button>
+            <div class="JiShiQi">
+                <div class="jshiqi_con">
+                    <span>时间：<b class="time">{{time}}</b> </span>
+                    <span>速度：<b> 35</b>字</span>
+                    <span>进度：<b>0%</b></span>
+                    <span>正确率：<b>0%</b></span>
+                    <button @click="beginDaZi">开始</button>
+                </div>
             </div>
+
         </div>
-
+        <div style="position:fixed;font-size:12px;color:green;width:200px;height:100%;overflow-y:scroll;right:0px;top:0px; color:#fff;background:#000;padding:15px 5px;">
+            <!--<div>{{DaDuanLuoChaiFens}}</div>-->
+            <pre style="color:lawngreen">{{WatchWord}}</pre>
+            <pre style="color:red">{{XieRuNeiRong}}</pre>
+        </div>
     </div>
-    <div style="position:fixed;font-size:12px;color:green;width:200px;height:100%;overflow-y:scroll;right:0px;top:0px; color:#fff;background:#000;padding:15px 5px;">
-        <!--<div>{{DaDuanLuoChaiFens}}</div>-->
-        <pre style="color:lawngreen">{{WatchWord}}</pre>
-        <pre style="color:red">{{XieRuNeiRong}}</pre>
-    </div>
-</div>
 
-<script src="./vue.min.js"></script>
-<script>
-    Vue.config.devtools = true;
-    var vm = new Vue({
-        el: '#app',
-        data: {
-            YuanNeiRong: 'font-family:Arial,Verdana,Tahoma,"宋体",Helvetica,sans-serif;',
-            DaZiLieBiao: [],
-            XieRuNeiRong: [],
-            DaDuanLuoChaiFens: [],
-            time: {
-                h:{},
-                m:{},
-                s:{}
-            },
-
-        },
-        computed: {
-            WatchWord() {
-                var aa = [];
-                this.XieRuNeiRong.forEach((i, c, v) => {
-                    if (i.length) {
-                        aa.push(i.split(""))
-                    } else {
-                        aa.push(i)
-                    }
-                })
-                // return this.XieRuNeiRong.split("");
-                return aa;
-            },
-            DaDuanLuoChaiFen() {
-                // for(let i=this.YuanNeiRong.length;i--){
-                //
-                // }
-                // var cab =  this.DaZiLieBiao.concat();
-
-            }
-        },
-        created() {
-            this.DaZiLieBiao = this.YuanNeiRong.split("");
-            // console.log(this.WatchWord[5]);
-            // this.DaZiLieBiao.forEach((m,i,v)=>{
-            if (this.DaZiLieBiao.length > 34) {
-                var hang = parseInt(this.DaZiLieBiao.length / 34) + 1;
-                for (let c = 0; c < hang; c++) {
-                    // var cc = v.splice(0,34)
-                    this.DaDuanLuoChaiFens.push(this.DaZiLieBiao.splice(0, 34));
-                    this.XieRuNeiRong.push([])
-                }
-            } else {
-
-            }
-            // });
-            // for(){
-
-            // }
-            this.DaDuanLuoChaiFens.push(this.DaZiLieBiao)
-            // return this.DaDuanLuoChaiFens
-        },
-        methods: {
-            beginDaZi() {
-                var today = new Date(0,0,0);
-                var h = today.getHours()>=10?today.getHours():"0"+today.getHours();
-                var m = today.getMinutes()>=10?today.getMinutes():"0"+today.getMinutes();
-                var s = today.getSeconds()>=10?today.getSeconds():"0"+today.getSeconds();
-                today.getSeconds()today.getSeconds()++;
-                this.time = h + ":" + m + ":" + s;
-                console.log(this.time)
-                setTimeout(this.beginDaZi,1000);
-            }
-        },
-        watch: {
-            WatchWord: {
-                handler(newValue, oldValue) {
-                    // console.log(newValue);
-                    /* this.zhuanhaushuzu.map((m,i,u)=>{
-
-                    }) */
-                    newValue.forEach((i, c, v) => {
-                        if (i instanceof Array) {
-                            i.forEach((ip, cp, vp) => {
-                                // console.log(ip)
-                                if (ip != this.DaDuanLuoChaiFens[c][cp]) {
-                                    console.log(cp)
-                                }
-                                // console.log(this.XieRuNeiRong)
-                            })
-                        }
-                    })
+    <script src="./vue.min.js"></script>
+    <script>
+        Vue.config.devtools = true;
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                YuanNeiRong: 'font-family:Arial,Verdana,Tahoma,"宋体",Helvetica,sans-serif;',
+                DaZiLieBiao: [],
+                XieRuNeiRong: [],
+                DaDuanLuoChaiFens: [],
+                time: {
+                    h: '00',
+                    m: '00',
+                    s: '00'
                 },
-                deep: true
+
             },
+            computed: {
+                WatchWord() {
+                    var aa = [];
+                    this.XieRuNeiRong.forEach((i, c, v) => {
+                            if (i.length) {
+                                aa.push(i.split(""))
+                            } else {
+                                aa.push(i)
+                            }
+                        })
+                        // return this.XieRuNeiRong.split("");
+                    return aa;
+                },
+                DaDuanLuoChaiFen() {
+                    // for(let i=this.YuanNeiRong.length;i--){
+                    //
+                    // }
+                    // var cab =  this.DaZiLieBiao.concat();
 
-        }
-    })
+                }
+            },
+            created() {
+                this.DaZiLieBiao = this.YuanNeiRong.split("");
+                // console.log(this.WatchWord[5]);
+                // this.DaZiLieBiao.forEach((m,i,v)=>{
+                if (this.DaZiLieBiao.length > 34) {
+                    var hang = parseInt(this.DaZiLieBiao.length / 34) + 1;
+                    for (let c = 0; c < hang; c++) {
+                        // var cc = v.splice(0,34)
+                        this.DaDuanLuoChaiFens.push(this.DaZiLieBiao.splice(0, 34));
+                        this.XieRuNeiRong.push([])
+                    }
+                } else {
 
-</script>
+                }
+                // });
+                // for(){
+
+                // }
+                this.DaDuanLuoChaiFens.push(this.DaZiLieBiao)
+                    // return this.DaDuanLuoChaiFens
+            },
+            methods: {
+                beginDaZi() {
+                    // var today = new Date(0,0,0);
+                    // var h = today.getHours()>=10?today.getHours():"0"+today.getHours();
+                    // var m = today.getMinutes()>=10?today.getMinutes():"0"+today.getMinutes();
+                    // var s = today.getSeconds()>=10?today.getSeconds():"0"+today.getSeconds();
+                    // today.getSeconds()today.getSeconds()++;
+                    // this.time = h + ":" + m + ":" + s;
+                    // console.log(this.time)
+                    // setTimeout(this.beginDaZi,1000);
+                    var b = setInterval(() => {
+                        this.time.s - 0;
+                        if (this.time.s < 9) {
+                            this.time.s++;
+                            this.time.s = '0' + this.time.s;
+                        } else {
+                            this.time.s++
+                        }
+                        if (this.time.s == 16) {
+                            this.time.m - 0;
+                            this.time.s = '0' + 1;
+                            if (this.time.m < 9) {
+                                this.time.m++;
+                                this.time.m = '0' + this.time.m;
+                            } else {
+                                this.time.m++
+                            }
+                            // this.time.m = '0' + this.time.m;
+                        }
+                        if (this.time.m == 61) {
+                            this.time.h - 0;
+                            this.time.m = '0' + 1;
+                            if (this.time.h < 9) {
+                                this.time.h++;
+                                this.time.h = '0' + this.time.h;
+                            } else {
+                                this.time.h++
+                            }
+                        }
+                    }, 1000)
+                }
+            },
+            watch: {
+                WatchWord: {
+                    handler(newValue, oldValue) {
+                        // console.log(newValue);
+                        /* this.zhuanhaushuzu.map((m,i,u)=>{
+
+                        }) */
+                        newValue.forEach((i, c, v) => {
+                            if (i instanceof Array) {
+                                i.forEach((ip, cp, vp) => {
+                                    // console.log(ip)
+                                    if (ip != this.DaDuanLuoChaiFens[c][cp]) {
+                                        console.log(cp)
+                                    }
+                                    // console.log(this.XieRuNeiRong)
+                                })
+                            }
+                        })
+                    },
+                    deep: true
+                },
+
+            }
+        })
+    </script>
 </body>
+
 </html>
