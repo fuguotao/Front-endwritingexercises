@@ -1,4 +1,5 @@
-body ,*{
+body,
+* {
     font-family: '微软雅黑', 'Airay'
 }
 
@@ -24,23 +25,26 @@ body ,*{
 }
 
 .CanKao {
-    letter-spacing: 5PX;
+    letter-spacing: 1PX;
     text-align: justify;
 }
 
-.XieZiBan input{
+.XieZiBan input {
     border: none;
     font-family: 'Airay', '微软雅黑';
     width: 100%;
     font-size: 18px;
     border-bottom: 1px dashed #ddd;
     outline: none;
-    padding:0;
+    padding: 0;
     padding-top: 5px;
-    letter-spacing: 5PX;
+    letter-spacing: 1PX;
     text-align: justify;
     /*color: #fff;*/
-    caret-color: black;height: 28px;
+    caret-color: black;
+    height: 28px;
+    margin: 5px 0;
+    border-radius: 2px;
 }
 
 input:focus {

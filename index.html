@@ -70,7 +70,7 @@
                     <span class="CanKaoBanZiTi" v-for="(m,i) in mmc" :key="i" :class="{red: m !== WatchWord[iic][i]&&typeof WatchWord[iic][i]!=='undefined',green:m === WatchWord[iic][i]}">{{m}}</span>
                 </div>
                 <div class="NeiRong">
-                    <input ref="input01" autofocus="autofocus" v-model="XieRuNeiRong[iic]">
+                    <input :disabled="IsKaishi" ref="input01" autofocus="autofocus" v-model="XieRuNeiRong[iic]">
                     <div class="PositionWord">
                         <span v-for="(m,i) in WatchWord[iic]" :class="{red:m!==DaZiLieBiao[i]}">{{m}}</span>
                     </div>
@@ -100,14 +100,15 @@
         var vm = new Vue({
             el: '#app',
             data: {
+                IsKaishi: true,
                 YuanNeiRong: 'font-family:Arial,Verdana,Tahoma,"宋体",Helvetica,sans-serif;',
                 DaZiLieBiao: [],
                 XieRuNeiRong: [],
                 DaDuanLuoChaiFens: [],
                 time: {
-                    h: '00',
-                    m: '00',
-                    s: '00'
+                    小时: '00',
+                    分钟: '00',
+                    秒: '00'
                 },
 
             },
@@ -155,6 +156,8 @@
             },
             methods: {
                 beginDaZi() {
+                    console.log('aaa')
+                    this.IsKaishi = false;
                     // var today = new Date(0,0,0);
                     // var h = today.getHours()>=10?today.getHours():"0"+today.getHours();
                     // var m = today.getMinutes()>=10?today.getMinutes():"0"+today.getMinutes();
@@ -164,32 +167,33 @@
                     // console.log(this.time)
                     // setTimeout(this.beginDaZi,1000);
                     var b = setInterval(() => {
-                        this.time.s - 0;
-                        if (this.time.s < 9) {
-                            this.time.s++;
-                            this.time.s = '0' + this.time.s;
+                        console.log()
+                        this.time.秒 - 0;
+                        if (this.time.秒 < 9) {
+                            this.time.秒++;
+                            this.time.秒 = '0' + this.time.秒;
                         } else {
-                            this.time.s++
+                            this.time.秒++
                         }
-                        if (this.time.s == 16) {
-                            this.time.m - 0;
-                            this.time.s = '0' + 1;
-                            if (this.time.m < 9) {
-                                this.time.m++;
-                                this.time.m = '0' + this.time.m;
+                        if (this.time.秒 >= 16) {
+                            this.time.分钟 - 0;
+                            this.time.秒 = '0' + 1;
+                            if (this.time.分钟 < 9) {
+                                this.time.分钟++;
+                                this.time.分钟 = '0' + this.time.分钟;
                             } else {
-                                this.time.m++
+                                this.time.分钟++
                             }
                             // this.time.m = '0' + this.time.m;
                         }
-                        if (this.time.m == 61) {
-                            this.time.h - 0;
-                            this.time.m = '0' + 1;
-                            if (this.time.h < 9) {
-                                this.time.h++;
-                                this.time.h = '0' + this.time.h;
+                        if (this.time.分钟 >= 61) {
+                            this.time.小时 - 0;
+                            this.time.分钟 = '0' + 1;
+                            if (this.time.小时 < 9) {
+                                this.time.小时++;
+                                this.time.小时 = '0' + this.time.小时;
                             } else {
-                                this.time.h++
+                                this.time.小时++
                             }
                         }
                     }, 1000)
