@@ -8,222 +8,283 @@
 </head>
 
 <body>
-    <style>
-        body {
-            font-size: 18px;
-        }
-        
-        #app {}
-        
-        .layout {
-            width: 800px;
-            margin: 0 auto
-        }
-        
-        .Tabsyz {}
-        
-        .Tabsyz ul {}
-        
-        .Tabsyz ul li {
-            list-style: none;
-        }
-        
-        .Tabsyz ul li a {}
-        
-        .NeiRong {
-            position: relative;
-        }
-        
-        .PositionWord {
-            display: none;
-            letter-spacing: 5PX;
-            text-align: justify;
-            position: absolute;
-            top: 5px;
-            left: 0px;
-        }
-    </style>
-    <div id="app">
-        <div class="layout">
-            <div class="Tabsyz">
-                <ul>
-                    <li>
-                        <a href="javascript:">中文</a>
-                    </li>
-                    <li>
-                        <a href="javascript:">英文</a>
-                    </li>
-                    <li>
-                        <a href="javascript:">自定义内容</a>
-                    </li>
-                </ul>
-            </div>
-            <div class="prliplist" style="display:none">
-                <ul>
-                    <li>dfasdfasfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdf</li>
-                </ul>
-            </div>
-            <div class="compareword">
-            </div>
-            <div class="XieZiBan" v-for="(mmc,iic) in DaDuanLuoChaiFens" :key="iic">
-                <div class="CanKao">
-                    <span class="CanKaoBanZiTi" v-for="(m,i) in mmc" :key="i" :class="{red: m !== WatchWord[iic][i]&&typeof WatchWord[iic][i]!=='undefined',green:m === WatchWord[iic][i]}">{{m}}</span>
-                </div>
-                <div class="NeiRong">
-                    <input :disabled="IsKaishi" ref="input01" autofocus="autofocus" v-model="XieRuNeiRong[iic]">
-                    <div class="PositionWord">
-                        <span v-for="(m,i) in WatchWord[iic]" :class="{red:m!==DaZiLieBiao[i]}">{{m}}</span>
-                    </div>
-                </div>
-            </div>
-            <div class="JiShiQi">
-                <div class="jshiqi_con">
-                    <span>时间：<b class="time">{{time}}</b> </span>
-                    <span>速度：<b> 35</b>字</span>
-                    <span>进度：<b>0%</b></span>
-                    <span>正确率：<b>0%</b></span>
-                    <button @click="beginDaZi">开始</button>
-                </div>
-            </div>
+<style>
+    body {
+        font-size: 18px;
+    }
 
+    #app {
+    }
+
+    .layout {
+        width: 800px;
+        margin: 0 auto
+    }
+
+    .Tabsyz {
+    }
+
+    .Tabsyz ul {
+    }
+
+    .Tabsyz ul li {
+        list-style: none;
+    }
+
+    .Tabsyz ul li a {
+    }
+
+    .NeiRong {
+        position: relative;
+    }
+
+    .PositionWord {
+        display: none;
+        letter-spacing: 5PX;
+        text-align: justify;
+        position: absolute;
+        top: 5px;
+        left: 0px;
+    }
+</style>
+<div id="app">
+    <div class="layout">
+        <div class="Tabsyz">
+            <ul>
+                <li>
+                    <a href="javascript:">中文</a>
+                </li>
+                <li>
+                    <a href="javascript:">英文</a>
+                </li>
+                <li>
+                    <a href="javascript:">自定义内容</a>
+                </li>
+            </ul>
         </div>
-        <div style="position:fixed;font-size:12px;color:green;width:200px;height:100%;overflow-y:scroll;right:0px;top:0px; color:#fff;background:#000;padding:15px 5px;">
-            <!--<div>{{DaDuanLuoChaiFens}}</div>-->
-            <pre style="color:lawngreen">{{WatchWord}}</pre>
-            <pre style="color:red">{{XieRuNeiRong}}</pre>
+        <div class="JiShiQi">
+            <div class="jshiqi_con">
+                <span>时间：<b class="time">{{time}}</b> </span>
+                <span>速度：<b> 35</b>字</span>
+                <span>进度：<b>0%</b></span>
+                <span>正确率：<b>0%</b></span>
+                <button v-if="IsKaishi" @click="beginDaZi('begin')">开始</button>
+                <button v-if="!IsKaishi" @click="beginDaZi('end')">结束</button>
+            </div>
         </div>
+        <div class="prliplist" style="display:none">
+            <ul>
+                <li>dfasdfasfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdf</li>
+            </ul>
+        </div>
+        <div class="compareword">
+        </div>
+
+        <div class="XieZiBan" v-for="(mmc,iic) in DaDuanLuoChaiFens" :key="iic">
+            <div class="CanKao">
+                <span class="CanKaoBanZiTi" v-for="(m,i) in mmc" :key="i"
+                      :class="{red: m !== WatchWord[iic][i]&&typeof WatchWord[iic][i]!=='undefined',green:m === WatchWord[iic][i]}">{{m}}</span>
+            </div>
+            <div class="NeiRong" ref="input01">
+                <input :class='["inp"+iic]' v-model="XieRuNeiRong[iic]">
+                <div class="PositionWord">
+                    <span v-for="(m,i) in WatchWord[iic]" :class="{red:m!==DaZiLieBiao[i]}">{{m}}</span>
+                </div>
+            </div>
+        </div>
+
+
     </div>
+    <div style="position:fixed;font-size:12px;color:green;width:200px;height:100%;overflow-y:scroll;right:0px;top:0px; color:#fff;background:#000;padding:15px 5px;">
+        <!--<div>{{DaDuanLuoChaiFens}}</div>-->
+        <pre style="color:lawngreen">{{WatchWord}}</pre>
+        <pre style="color:red">{{XieRuNeiRong}}</pre>
+    </div>
+</div>
 
-    <script src="./vue.min.js"></script>
-    <script>
-        Vue.config.devtools = true;
-        var vm = new Vue({
-            el: '#app',
-            data: {
-                IsKaishi: true,
-                YuanNeiRong: 'font-family:Arial,Verdana,Tahoma,"宋体",Helvetica,sans-serif;',
-                DaZiLieBiao: [],
-                XieRuNeiRong: [],
-                DaDuanLuoChaiFens: [],
-                time: {
-                    小时: '00',
-                    分钟: '00',
-                    秒: '00'
-                },
+<script src="./vue.min.js"></script>
+<script>
+    Vue.config.devtools = true;
+    var vm = new Vue({
+        el: '#app',
+        data: {
 
+            IsKaishi: true,
+            YuanNeiRong: '归去来兮，田园将芜胡不归？既自以心为形役，奚惆怅而独悲？悟已往之不谏，知来者之可追。实迷途其未远，觉今是而昨非。舟遥遥以轻飏，风飘飘而吹衣。问征夫以前路，恨晨光之熹微。\n' +
+            '　　乃瞻衡宇，载欣载奔。僮仆欢迎，稚子候门。三径就荒，松菊犹存。携幼入室，有酒盈樽。引壶觞以自酌，眄庭柯以怡颜。倚南窗以寄傲，审容膝之易安。园日涉以成趣，门虽设而常关。策扶老以流憩，时矫首而遐观。云无心以出岫，鸟倦飞而知还。景翳翳以将入，抚孤松而盘桓。\n' +
+            '　　归去来兮，请息交以绝游。世与我而相违，复驾言兮焉求？悦亲戚之情话，乐琴书以消忧。农人告余以春及，将有事于西畴。或命巾车，或棹孤舟。既窈窕以寻壑，亦崎岖而经丘。木欣欣以向荣，泉涓涓而始流。善万物之得时，感吾生之行休。\n' +
+            '　　已矣乎！寓形宇内复几时。曷不委心任去留？胡为乎遑遑欲何之？富贵非吾愿，帝乡不可期。怀良辰以孤往，或植杖而耘耔。登东皋以舒啸，临清流而赋诗。聊乘化以归尽，乐夫天命复奚疑！',
+            DaZiLieBiao: [],
+            XieRuNeiRong: [],
+            DaDuanLuoChaiFens: [],
+            KaiQiShuRu: 0,
+            time: {
+                小时: '00',
+                分钟: '00',
+                秒: '00'
             },
-            computed: {
-                WatchWord() {
-                    var aa = [];
-                    this.XieRuNeiRong.forEach((i, c, v) => {
-                            if (i.length) {
-                                aa.push(i.split(""))
-                            } else {
-                                aa.push(i)
-                            }
-                        })
-                        // return this.XieRuNeiRong.split("");
-                    return aa;
-                },
-                DaDuanLuoChaiFen() {
-                    // for(let i=this.YuanNeiRong.length;i--){
-                    //
-                    // }
-                    // var cab =  this.DaZiLieBiao.concat();
 
-                }
-            },
-            created() {
-                this.DaZiLieBiao = this.YuanNeiRong.split("");
-                // console.log(this.WatchWord[5]);
-                // this.DaZiLieBiao.forEach((m,i,v)=>{
-                if (this.DaZiLieBiao.length > 34) {
-                    var hang = parseInt(this.DaZiLieBiao.length / 34) + 1;
-                    for (let c = 0; c < hang; c++) {
-                        // var cc = v.splice(0,34)
-                        this.DaDuanLuoChaiFens.push(this.DaZiLieBiao.splice(0, 34));
-                        this.XieRuNeiRong.push([])
+        },
+        directives: {
+            focus: {
+                // directive definition
+                inserted: function (el, {value}) {
+                    if (el.className == 'inp' + value) {
+                        el.focus()
                     }
-                } else {
-
                 }
-                // });
-                // for(){
-
+            }
+        },
+        computed: {
+            WatchWord() {
+                var aa = [];
+                this.XieRuNeiRong.forEach((i, c, v) => {
+                    if (i.length) {
+                        aa.push(i.split(""))
+                    } else {
+                        aa.push(i)
+                    }
+                })
+                // return this.XieRuNeiRong.split("");
+                return aa;
+            },
+            DaDuanLuoChaiFen() {
+                // for(let i=this.YuanNeiRong.length;i--){
+                //
                 // }
-                this.DaDuanLuoChaiFens.push(this.DaZiLieBiao)
-                    // return this.DaDuanLuoChaiFens
-            },
-            methods: {
-                beginDaZi() {
-                    console.log('aaa')
-                    this.IsKaishi = false;
-                    // var today = new Date(0,0,0);
-                    // var h = today.getHours()>=10?today.getHours():"0"+today.getHours();
-                    // var m = today.getMinutes()>=10?today.getMinutes():"0"+today.getMinutes();
-                    // var s = today.getSeconds()>=10?today.getSeconds():"0"+today.getSeconds();
-                    // today.getSeconds()today.getSeconds()++;
-                    // this.time = h + ":" + m + ":" + s;
-                    // console.log(this.time)
-                    // setTimeout(this.beginDaZi,1000);
-                    var b = setInterval(() => {
-                        console.log()
-                        this.time.秒 - 0;
-                        if (this.time.秒 < 9) {
-                            this.time.秒++;
-                            this.time.秒 = '0' + this.time.秒;
-                        } else {
-                            this.time.秒++
-                        }
-                        if (this.time.秒 >= 16) {
-                            this.time.分钟 - 0;
-                            this.time.秒 = '0' + 1;
-                            if (this.time.分钟 < 9) {
-                                this.time.分钟++;
-                                this.time.分钟 = '0' + this.time.分钟;
-                            } else {
-                                this.time.分钟++
-                            }
-                            // this.time.m = '0' + this.time.m;
-                        }
-                        if (this.time.分钟 >= 61) {
-                            this.time.小时 - 0;
-                            this.time.分钟 = '0' + 1;
-                            if (this.time.小时 < 9) {
-                                this.time.小时++;
-                                this.time.小时 = '0' + this.time.小时;
-                            } else {
-                                this.time.小时++
-                            }
-                        }
-                    }, 1000)
-                }
-            },
-            watch: {
-                WatchWord: {
-                    handler(newValue, oldValue) {
-                        // console.log(newValue);
-                        /* this.zhuanhaushuzu.map((m,i,u)=>{
-
-                        }) */
-                        newValue.forEach((i, c, v) => {
-                            if (i instanceof Array) {
-                                i.forEach((ip, cp, vp) => {
-                                    // console.log(ip)
-                                    if (ip != this.DaDuanLuoChaiFens[c][cp]) {
-                                        console.log(cp)
-                                    }
-                                    // console.log(this.XieRuNeiRong)
-                                })
-                            }
-                        })
-                    },
-                    deep: true
-                },
+                // var cab =  this.DaZiLieBiao.concat();
 
             }
-        })
-    </script>
+        },
+        created() {
+            // this.keyCodes = {
+            //     f1: 112,
+            // }
+            var that = this;
+            document.onkeydown = function (event) {
+                var event = event || window.event;
+                if (event.keyCode == 13) {
+                    that.beginDaZi();
+                    that.KaiQiShuRu = 0;
+                }
+
+            };
+            this.DaZiLieBiao = this.YuanNeiRong.split("");
+            // console.log(this.WatchWord[5]);
+            // this.DaZiLieBiao.forEach((m,i,v)=>{
+            if (this.DaZiLieBiao.length > 34) {
+                var hang = this.DaZiLieBiao.length % 34 == 0 ? parseInt(this.DaZiLieBiao.length / 34) : parseInt(this.DaZiLieBiao.length / 34) + 1;
+
+                for (var c = 0; c < hang; c++) {
+                    // var cc = v.splice(0,34)
+                    this.DaDuanLuoChaiFens.push(this.DaZiLieBiao.splice(0, 34));
+                    this.XieRuNeiRong.push([])
+                }
+            } else {
+                this.DaDuanLuoChaiFens.push(this.DaZiLieBiao);
+                this.XieRuNeiRong.push([])
+            }
+            // });
+            // for(){
+
+            // }
+            // this.DaDuanLuoChaiFens.push(this.DaZiLieBiao)
+            // return this.DaDuanLuoChaiFens
+        },
+
+        methods: {
+            stoporbegin() {
+
+            },
+            beginDaZi(cv) {
+                console.log('aaa');
+                this.IsKaishi = !this.IsKaishi;
+                var that = this;
+                var t;
+
+                function star() {
+                    // clearTimeout(t)
+                    if (!that.IsKaishi) {
+                        t = setTimeout(star, 1000);
+                    } else {
+                        clearTimeout(t)
+                    }
+                    // t = setTimeout(star, 1000);
+
+                    if (!that.IsKaishi) {
+                        that.time.秒 - 0;
+                        if (that.time.秒 < 9) {
+                            that.time.秒++;
+                            that.time.秒 = '0' + that.time.秒;
+                        } else {
+                            that.time.秒++
+                        }
+                        if (that.time.秒 >= 16) {
+                            that.time.分钟 - 0;
+                            that.time.秒 = '0' + 1;
+                            if (that.time.分钟 < 9) {
+                                that.time.分钟++;
+                                that.time.分钟 = '0' + that.time.分钟;
+                            } else {
+                                that.time.分钟++
+                            }
+                        }
+                        if (that.time.分钟 >= 61) {
+                            that.time.小时 - 0;
+                            that.time.分钟 = '0' + 1;
+                            if (that.time.小时 < 9) {
+                                that.time.小时++;
+                                that.time.小时 = '0' + that.time.小时;
+                            } else {
+                                that.time.小时++
+                            }
+                        }
+                    }
+                }
+
+                if (!this.IsKaishi) {
+                    debugger
+                    star();
+                    that.$refs.input01[0].querySelector('input').focus()
+                } else {
+                    clearTimeout(t)
+                }
+
+            }
+        },
+        watch: {
+            WatchWord: {
+                handler(newValue, oldValue) {
+                    newValue.forEach((i, c, v) => {
+                        // console.log(c)
+                        if (i instanceof Array) {
+                            if (i.length >= this.DaDuanLuoChaiFens[c].length) {
+                                if (this.$refs.input01.length - 1 > c) {
+                                    this.$refs.input01[c + 1].querySelector('input').focus();
+                                }
+                                this.XieRuNeiRong[c] = this.XieRuNeiRong[c].slice(0, this.DaDuanLuoChaiFens[c].length)
+                                // for(var bbc=0;bbc<=i.length-this.DaDuanLuoChaiFens[c].length;bbc++){
+                                //     debugger
+                                //     this.XieRuNeiRong[c].slice()
+                                // }
+                                console.log(this.WatchWord[c])
+                            }
+                            i.forEach((ip, cp, vp) => {
+                                // console.log(ip)
+                                if (ip != this.DaDuanLuoChaiFens[c][cp]) {
+                                    // console.log(cp)
+                                }
+                                // console.log(this.XieRuNeiRong)
+                            })
+                        }
+                    })
+                },
+                deep: true
+            },
+
+        }
+    })
+</script>
 </body>
 
 </html>
