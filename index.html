@@ -106,7 +106,7 @@
         
         #QiTaGongNeng {
             position: fixed;
-            z-index: 1;
+            z-index: 4;
             left: 0;
             height: 100%;
             width: 250px;
@@ -131,21 +131,51 @@
             font-weight: 800;
             color: #4e4e4e;
         }
+        
+        .HuanFu {
+            /* position: relative; */
+            margin: 10px auto;
+            border: 1px solid #ffffff26;
+            width: 80%;
+        }
+        
+        .HuanFu .img {
+            height: 113px;
+        }
+        
+        .HuanFu .img img {
+            width: 100%;
+        }
+        
+        .HuanFu .h {
+            /* position: absolute; */
+            /* top: 7px; */
+            /* right: 29px; */
+            /* width: 71px; */
+            padding: 6px 0px;
+            text-align: center;
+            background: #0000004f;
+            /* border-radius: 3px; */
+            color: #c5c5c5;
+            /* border: 1px solid #4646466b; */
+        }
     </style>
     <div id="bgBingYing"></div>
     <div id="QiTaGongNeng">
         <div class="qiehuanzhuti">
             <div class="HuanFu">
-                <div><img width="100px" height="50px" src="images/bg/1.jpg" alt=""></div>
-                <div>换肤</div>
+                <div class="img"><img src="images/bg/1.jpg" alt=""></div>
+                <div class="h">换肤</div>
             </div>
-            <div class="YeJian">
-                <div></div>
-                <div>
-                    <a href="javascript:">白天</a>
-                    <a href="javascript:">夜间</a>
-                </div>
+            <div class="HuanFu">
+                <div class="img"><img src="images/bg/1.jpg" alt=""></div>
+                <div class="h">白天</div>
             </div>
+            <div class="HuanFu">
+                <div class="img"><img src="images/bg/1.jpg" alt=""></div>
+                <div class="h">夜间</div>
+            </div>
+
         </div>
     </div>
     <div id="app">
@@ -277,7 +307,7 @@
                     type: true,
                     content: '回车键开始和暂停',
                     isChongXin: false,
-                    ShuRuFaType: '请保持中文输入法',
+                    ShuRuFaType: '请保持中文输入法，注意中英文标点',
                 },
                 YuanNeiRong: '归去来兮，田园将芜胡不归？既自以心为形役，奚惆怅而独悲？悟已往之不谏，知来者之可追。实迷途其未远，觉今是而昨非。舟遥遥以轻飏，风飘飘而吹衣。问征夫以前路，恨晨光之熹微。\n' +
                     '　　乃瞻衡宇，载欣载奔。僮仆欢迎，为以舒啸，临清流而赋诗。聊乘化以归尽，乐夫天命复奚疑！',
