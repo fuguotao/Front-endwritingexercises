@@ -9,10 +9,35 @@ body,
 
 .red {
     color: red;
+    text-shadow: 1px 1px 5px #ff7171;
 }
 
 .green {
-    color: blue
+    color: #6200ff;
+    text-shadow: 1px 1px 5px #ff7171;
+}
+
+button {
+    padding: 8px 15px;
+    border: none;
+    display: inline;
+    border-radius: 3px;
+    outline: none;
+    cursor: pointer;
+}
+
+button.success {
+    background: #1bab1b;
+    color: #fff;
+}
+
+button.error {
+    background: #ff5151;
+    color: #fff;
+}
+
+button.primary {
+    background: rgb(245, 245, 245);
 }
 
 .CanKaoBanZiTi {
@@ -20,8 +45,8 @@ body,
 }
 
 .XieZiBan {
-    border: 1px solid #eee;
-    padding: 5px;
+    /* border: 1px solid #eee; */
+    padding: 10px;
 }
 
 .CanKao {
@@ -34,9 +59,9 @@ body,
     font-family: 'Airay', '微软雅黑';
     width: 100%;
     font-size: 18px;
-    border-bottom: 1px dashed #ddd;
+    border-bottom: 1px dashed #424242;
     outline: none;
-    padding: 0;
+    padding: 10px 0;
     padding-top: 5px;
     letter-spacing: 1PX;
     text-align: justify;
@@ -45,6 +70,7 @@ body,
     height: 28px;
     margin: 5px 0;
     border-radius: 2px;
+    background: none;
 }
 
 input:focus {
