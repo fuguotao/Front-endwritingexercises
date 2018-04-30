@@ -1,6 +1,8 @@
 body,
 * {
-    font-family: '微软雅黑', 'Airay'
+    font-family: '微软雅黑', 'Airay';
+    margin: 0;
+    padding: 0;
 }
 
 .blue {
@@ -75,4 +77,153 @@ button.primary {
 
 input:focus {
     outline: none;
+}
+
+body {
+    filter: gray;
+}
+
+body {
+    font-size: 18px;
+}
+
+#app {
+    position: relative;
+    z-index: 1;
+}
+
+.layout {
+    width: 800px;
+    margin: 10px auto;
+    background: rgba(255, 255, 255, .8);
+    border-radius: 5px;
+    padding: 20px;
+}
+
+.Tabsyz {}
+
+.Tabsyz ul {
+    overflow: hidden;
+    padding: 0;
+}
+
+.Tabsyz ul li {
+    list-style: none;
+    float: left;
+}
+
+.Tabsyz ul li a {
+    padding: 5px 16px;
+    text-decoration: none;
+    display: inline-block;
+    background: #ffffff85;
+    margin-right: 10px;
+    color: #ff7777;
+    border: 1px solid #ffc0c0;
+    border-radius: 3px;
+}
+
+.Tabsyz ul li a.active {
+    background: #ff4e4e;
+    color: #fff;
+    border-color: red;
+}
+
+.NeiRong {
+    position: relative;
+}
+
+.main {
+    position: relative;
+    overflow: hidden;
+    border-radius: 5px;
+}
+
+.PositionWord {
+    display: none;
+    letter-spacing: 5PX;
+    text-align: justify;
+    position: absolute;
+    top: 5px;
+    left: 0px;
+}
+
+#ZheZhao {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+    background: rgba(255, 255, 255, .8);
+    font-size: 30px;
+    color: #ff00c8;
+    text-align: center;
+    line-height: 362px;
+}
+
+#bgBingYing {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    background: url('./images/bg/1.jpg') no-repeat center #000;
+    background-size: cover;
+}
+
+#QiTaGongNeng {
+    position: fixed;
+    z-index: 4;
+    left: 0;
+    height: 100%;
+    width: 250px;
+    background: #0000004f;
+    top: 0;
+    padding: 20px 0;
+}
+
+.compareword {
+    font-size: 14px;
+    background: #ffe1ee;
+    padding: 10px;
+    border: 1px solid #ff57d2;
+    border-radius: 3px;
+    color: #65666d;
+    margin: 10px 0;
+}
+
+#app .QianDuanBiaoTi {
+    margin: 10px auto;
+    font-size: 20px;
+    font-weight: 800;
+    color: #4e4e4e;
+}
+
+.HuanFu {
+    /* position: relative; */
+    margin: 10px auto;
+    border: 1px solid #ffffff26;
+    width: 80%;
+}
+
+.HuanFu .img {
+    height: 113px;
+}
+
+.HuanFu .img img {
+    width: 100%;
+}
+
+.HuanFu .h {
+    /* position: absolute; */
+    /* top: 7px; */
+    /* right: 29px; */
+    /* width: 71px; */
+    padding: 6px 0px;
+    text-align: center;
+    background: #0000004f;
+    /* border-radius: 3px; */
+    color: #b35098;
+    /* border: 1px solid #4646466b; */
+    font-size: 14px;
 }
