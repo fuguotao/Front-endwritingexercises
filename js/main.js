@@ -3,15 +3,16 @@ require.config({
     paths: {
         jquery: 'jquery-1.12.4.min',
         Vue: 'vue',
-        KeyBord: 'keybord'
+        KeyBord: 'keybord',
+        SkinChange: 'skin'
     }
 });
 
-require(['jquery', 'Vue', 'KeyBord'], function($, Vue, KeyBord) {
+require(['jquery', 'Vue', 'KeyBord', 'SkinChange'], function($, Vue, KeyBord, SkinChange) {
     Vue.config.devtools = true;
     var vm = new Vue({
         el: '#app',
-        components: { 'KeyBord': KeyBord },
+        components: { KeyBord, SkinChange },
         data: {
             IsKaishi: {
                 type: true,
@@ -32,6 +33,7 @@ require(['jquery', 'Vue', 'KeyBord'], function($, Vue, KeyBord) {
             },
             t: null,
             ZQL: '0.00',
+            PiFu: '0'
         },
         directives: {
             focus: {
@@ -67,6 +69,7 @@ require(['jquery', 'Vue', 'KeyBord'], function($, Vue, KeyBord) {
             }
         },
         created() {
+
             this.init();
             var that = this;
             document.onkeydown = function(event) {
@@ -100,7 +103,36 @@ require(['jquery', 'Vue', 'KeyBord'], function($, Vue, KeyBord) {
             })
         },
 
+        mounted() {
+            this.$nextTick(() => {
+                var e = window.localStorage.getItem('PiFu');
+                if (window.localStorage.getItem('PiFu')) {
+                    this.bgchangenex(e, 'bgBingYing');
+                    this.bgchangenex(e, 'bgBingYingCf');
+                }
+            })
+        },
         methods: {
+            bgchangenex(e, name) {
+                if (name) {
+                    this.$refs[name].style.background = 'url(' + window.location.href + 'images/bg/' + e + '.jpg)' + 'no-repeat'
+                    this.$refs[name].style.backgroundSize = 'cover';
+                    this.$refs[name].style.backgroundAttachment = 'fixed';
+                } else {
+                    setTimeout(() => {
+                        this.$refs['bgBingYing'].style.background = 'url(' + window.location.href + 'images/bg/' + e + '.jpg)' + 'no-repeat'
+                        this.$refs['bgBingYing'].style.backgroundSize = 'cover';
+                        this.$refs['bgBingYing'].style.backgroundAttachment = 'fixed';
+                    }, 2000)
+                    this.$refs['bgBingYingCf'].style.height = '0';
+                    this.$refs['bgBingYingCf'].style.background = 'url(' + window.location.href + 'images/bg/' + e + '.jpg)' + 'no-repeat'
+                    this.$refs['bgBingYingCf'].style.backgroundSize = 'cover';
+                    this.$refs['bgBingYingCf'].style.backgroundAttachment = 'fixed';
+                    this.$refs['bgBingYingCf'].style.height = '100%';
+
+                }
+                this.PiFu = e;
+            },
             init() {
                 var that = this;
 

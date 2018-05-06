@@ -95,7 +95,7 @@ body {
 .layout {
     width: 800px;
     margin: 10px auto;
-    background: rgba(255, 255, 255, .8);
+    background: rgba(255, 255, 255, .6);
     border-radius: 5px;
     padding: 20px;
 }
@@ -105,6 +105,7 @@ body {
 .Tabsyz ul {
     overflow: hidden;
     padding: 0;
+    margin: 0;
 }
 
 .Tabsyz ul li {
@@ -160,15 +161,16 @@ body {
     line-height: 362px;
 }
 
-#bgBingYing {
+.bgBingYing {
     position: fixed;
     top: 0;
     left: 0;
     z-index: 0;
     width: 100%;
     height: 100%;
-    background: url('./images/bg/1.jpg') no-repeat center #000;
+    /* background: url('./images/bg/0.jpg') no-repeat center #000; */
     background-size: cover;
+    background-attachment: fixed;
 }
 
 #QiTaGongNeng {
@@ -176,7 +178,7 @@ body {
     z-index: 4;
     left: 0;
     height: 100%;
-    width: 250px;
+    width: 100px;
     background: #0000004f;
     top: 0;
     padding: 20px 0;
@@ -202,16 +204,26 @@ body {
 .HuanFu {
     /* position: relative; */
     margin: 10px auto;
-    border: 1px solid #ffffff26;
+    /* border: 1px solid #ffffff26; */
     width: 80%;
 }
 
 .HuanFu .img {
-    height: 113px;
+    /* height: 113px; */
+    text-align: center;
 }
 
 .HuanFu .img img {
-    width: 100%;
+    width: 75px;
+    height: 75px;
+    /* text-align:  center; */
+    display: block;
+    border: 1px solid #ffffff26;
+    border-radius: 50%;
+}
+
+.jshiqi_con {
+    margin: 10px 0;
 }
 
 .HuanFu .h {
@@ -221,9 +233,32 @@ body {
     /* width: 71px; */
     padding: 6px 0px;
     text-align: center;
-    background: #0000004f;
-    /* border-radius: 3px; */
-    color: #b35098;
+    background: #ff5151;
+    border-radius: 3px;
+    margin-top: 10px;
+    color: #ffffff;
     /* border: 1px solid #4646466b; */
-    font-size: 14px;
+    font-size: 12px;
 }
+
+#QiTaGongNeng #BgListcc {
+    position:  absolute;
+    top: 0;
+    left:  50px;
+    background:  red;
+    width:  100px;
+}
+#QiTaGongNeng #BgListcc ul{
+}
+#QiTaGongNeng #BgListcc ul li{
+    display:  block;
+    float:  none;
+    text-align:  center;
+}
+#QiTaGongNeng #BgListcc ul li .Bgli_img{}
+#QiTaGongNeng #BgListcc ul li .Bgli_img img{
+    width:  50px;
+    height:  50px;
+    border-radius: 50%;
+}
+#QiTaGongNeng #BgListcc ul li .Bgli_tit{}
