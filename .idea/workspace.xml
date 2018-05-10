@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="df85b758-fe68-4a57-b543-d79758d8def7" name="Default" comment="" />
+    <list default="true" id="df85b758-fe68-4a57-b543-d79758d8def7" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/js/word.js" afterPath="$PROJECT_DIR$/js/word.js" />
+      <change beforePath="$PROJECT_DIR$/style.css" afterPath="$PROJECT_DIR$/style.css" />
+    </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -14,11 +17,31 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="2288">
               <caret line="104" column="7" lean-forward="false" selection-start-line="104" selection-start-column="7" selection-end-line="104" selection-end-column="7" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="tmpA013.tmp.css" pinned="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/AppData/Local/Temp/tmpA013.tmp.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="tmpFF5A.tmp.css" pinned="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/AppData/Local/Temp/tmpFF5A.tmp.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -73,11 +96,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="word.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="word.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/word.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="176">
-              <caret line="8" column="45" lean-forward="true" selection-start-line="8" selection-start-column="45" selection-end-line="8" selection-end-column="45" />
+            <state relative-caret-position="418">
+              <caret line="19" column="37" lean-forward="false" selection-start-line="19" selection-start-column="37" selection-end-line="19" selection-end-column="37" />
               <folding />
             </state>
           </provider>
@@ -120,9 +143,9 @@
         <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/word.json" />
         <option value="$PROJECT_DIR$/json/word.json" />
-        <option value="$PROJECT_DIR$/js/word.js" />
         <option value="$PROJECT_DIR$/js/main.js" />
         <option value="$PROJECT_DIR$/js/ajax.js" />
+        <option value="$PROJECT_DIR$/js/word.js" />
       </list>
     </option>
   </component>
@@ -238,7 +261,7 @@
       <workItem from="1523157384824" duration="9279000" />
       <workItem from="1523194072761" duration="11093000" />
       <workItem from="1523545701544" duration="697000" />
-      <workItem from="1525966974058" duration="1875000" />
+      <workItem from="1525966974058" duration="2546000" />
     </task>
     <task id="LOCAL-00001" summary="gengxintime">
       <created>1522291523745</created>
@@ -258,7 +281,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="46532000" />
+    <option name="totallyTimeSpent" value="47203000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -507,23 +530,6 @@
     </entry>
     <entry file="file://$USER_HOME$/AppData/Local/Temp/360zip$Temp/360$0/vue.min.js" />
     <entry file="file://$PROJECT_DIR$/vue.min.js" />
-    <entry file="file://$PROJECT_DIR$/js/skin.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="572">
-          <caret line="26" column="10" lean-forward="true" selection-start-line="26" selection-start-column="10" selection-end-line="26" selection-end-column="10" />
-          <folding>
-            <marker date="1525966609254" expanded="true" signature="91:1087" ph="..." />
-            <marker date="1525966609254" expanded="true" signature="124:718" ph="..." />
-            <marker date="1525966609254" expanded="true" signature="146:299" ph="..." />
-            <marker date="1525966609254" expanded="true" signature="340:497" ph="..." />
-            <marker date="1525966609254" expanded="true" signature="538:695" ph="..." />
-            <marker date="1525966609254" expanded="true" signature="754:1068" ph="..." />
-            <marker date="1525966609254" expanded="true" signature="779:1045" ph="..." />
-            <marker date="1525966609254" expanded="true" signature="865:1040" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/style.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="374">
@@ -536,14 +542,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/word.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="8" column="45" lean-forward="true" selection-start-line="8" selection-start-column="45" selection-end-line="8" selection-end-column="45" />
           <folding />
         </state>
       </provider>
@@ -568,6 +566,47 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2288">
           <caret line="104" column="7" lean-forward="false" selection-start-line="104" selection-start-column="7" selection-end-line="104" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Temp/tmpA013.tmp.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Temp/tmpFF5A.tmp.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/skin.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="572">
+          <caret line="26" column="10" lean-forward="true" selection-start-line="26" selection-start-column="10" selection-end-line="26" selection-end-column="10" />
+          <folding>
+            <marker date="1525966609254" expanded="true" signature="91:1087" ph="..." />
+            <marker date="1525966609254" expanded="true" signature="124:718" ph="..." />
+            <marker date="1525966609254" expanded="true" signature="146:299" ph="..." />
+            <marker date="1525966609254" expanded="true" signature="340:497" ph="..." />
+            <marker date="1525966609254" expanded="true" signature="538:695" ph="..." />
+            <marker date="1525966609254" expanded="true" signature="754:1068" ph="..." />
+            <marker date="1525966609254" expanded="true" signature="779:1045" ph="..." />
+            <marker date="1525966609254" expanded="true" signature="865:1040" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/word.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="418">
+          <caret line="19" column="37" lean-forward="false" selection-start-line="19" selection-start-column="37" selection-end-line="19" selection-end-column="37" />
           <folding />
         </state>
       </provider>

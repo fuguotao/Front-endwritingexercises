@@ -16,5 +16,7 @@ ul, ol { list-style: none; }
 .fl{ float: left; }
 .fr{float: right;}`,
     javascript: "fasdfsadfsdfasdfasdf",
-    html: "fasdfasdfsdfsdfasdfasdfs"
+    html: "fasdfasdfsdfsdfasdfasdfs",
+    english:"asdfasdfasdfasdfasdfasdf",
+    chinese:"发的发送到发撒旦法撒旦法三地方",
 }

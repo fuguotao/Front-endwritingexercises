@@ -95,7 +95,7 @@ body {
 .layout {
     width: 800px;
     margin: 10px auto;
-    background: rgba(255, 255, 255, .6);
+    background: rgba(255, 255, 255, .8);
     border-radius: 5px;
     padding: 20px;
 }
@@ -179,7 +179,7 @@ body {
     left: 0;
     height: 100%;
     width: 100px;
-    background: #0000004f;
+    background: #0000008a;
     top: 0;
     padding: 20px 0;
 }
@@ -245,7 +245,7 @@ body {
     position:  absolute;
     top: 0;
     left: 100px;
-    background: #93939375;
+    background: #3c3c3c75;
     width:  100px;
 }
 #QiTaGongNeng #BgListcc ul{
