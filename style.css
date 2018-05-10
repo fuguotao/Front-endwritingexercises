@@ -95,7 +95,7 @@ body {
 .layout {
     width: 800px;
     margin: 10px auto;
-    background: rgba(255, 255, 255, .5);
+    background: rgba(255, 255, 255, .6);
     border-radius: 5px;
     padding: 20px;
 }
@@ -242,18 +242,23 @@ body {
 }
 
 #QiTaGongNeng #BgListcc {
-    position: absolute;
+    position:  absolute;
     top: 0;
-    left: 50px;
-    background: red;
-    width: 100px;
+    left: 100px;
+    background: #93939375;
+    width:  100px;
 }
-
-#QiTaGongNeng #BgListcc ul {}
-
-#QiTaGongNeng #BgListcc ul li {
-    display: block;
-    float: none;
+#QiTaGongNeng #BgListcc ul{
 }
-
-#QiTaGongNeng #BgListcc ul li img {}
+#QiTaGongNeng #BgListcc ul li{
+    display:  block;
+    float:  none;
+    text-align:  center;
+}
+#QiTaGongNeng #BgListcc ul li .Bgli_img{}
+#QiTaGongNeng #BgListcc ul li .Bgli_img img{
+    width:  50px;
+    height:  50px;
+    border-radius: 50%;
+}
+#QiTaGongNeng #BgListcc ul li .Bgli_tit{}
