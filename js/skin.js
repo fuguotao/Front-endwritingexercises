@@ -18,7 +18,7 @@ define(['jquery', 'Vue'], function($, Vue) {
                 </div>
                 <div id="BgListcc">
                     <ul><li v-for="(item,index) in PiFu.BgLint" :key="index" @click="ChangePiFu($event,item)">
-                    <div class="Bgli_img"><img v-bind:src="'../images/bg/'+item+'.jpg'"></div>
+                    <div class="Bgli_img"><img v-bind:src="'images/bg/'+item+'.jpg'"></div>
                     <div class="Bgli_tit">{{item}}</div>
                     </li></ul>
                 </div>

@@ -20,8 +20,22 @@ require(['jquery', 'Vue', 'KeyBord', 'SkinChange'], function($, Vue, KeyBord, Sk
                 isChongXin: false,
                 ShuRuFaType: '请保持中文输入法，注意中英文标点',
             },
-            YuanNeiRong: '归去来兮，田园将芜胡不归？既自以心为形役，奚惆怅而独悲？悟已往之不谏，知来者之可追。实迷途其未远，觉今是而昨非。舟遥遥以轻飏，风飘飘而吹衣。问征夫以前路，恨晨光之熹微。\n' +
-                '　　乃瞻衡宇，载欣载奔。僮仆欢迎，为以舒啸，临清流而赋诗。聊乘化以归尽，乐夫天命复奚疑！',
+            YuanNeiRong: `html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, 
+            strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, 
+            tfoot, thead, tr, th, td ,textarea,input { margin:0; padding:0;  }
+            address,cite,dfn,em,var, i {font-style:normal;}
+            body {font-size: 16px; line-height: 1.5; font-family:'Microsoft Yahei','simsun','arial','tahoma';  color: #222; background: #eee; }
+            table { border-collapse:collapse; border-spacing:0; }
+            h1, h2, h3, h4, h5, h6, th { font-size: 100%; font-weight: normal; }
+            button,input,select,textarea{font-size:100%;}
+            fieldset,img{border:0;}
+            a { text-decoration: none; color: #666; background: none }
+            ul, ol { list-style: none; }
+            :focus{ outline:none;}
+            .clearfix{ clear: both; content: ""; display: block; overflow: hidden }
+            .clear{clear: both;}
+            .fl{ float: left; }
+            .fr{float: right;}`,
             DaZiLieBiao: [],
             XieRuNeiRong: [],
             DaDuanLuoChaiFens: [],
@@ -80,27 +94,7 @@ require(['jquery', 'Vue', 'KeyBord', 'SkinChange'], function($, Vue, KeyBord, Sk
                 }
 
             };
-            ajax({
-                type: "POST",
-                url: "http://route.showapi.com/1287-1",
-                dataType: "json",
-                data: {
-                    showapi_appid: 100, //是	易源应用id
-                    showapi_sign: '6356B7D41DABBDDD2F7EC560C5786300', //是	为了验证用户身份，以及确保参数不被中间人篡改，需要传递调用者的数字签名。
-                    showapi_timestamp: new Date().getTime(), //否	客户端时间。 
-                    showapi_sign_method: 'md5', //否	签名生成方式，其值可选为"md5"或"hmac"。如果不传入则默认"md5"。
-                    showapi_res_gzip: 1,
-                },
-                beforeSend: function() {
-                    //some js code 
-                },
-                success: function(msg) {
-                    console.log(msg)
-                },
-                error: function() {
-                    console.log("error")
-                }
-            })
+
         },
 
         mounted() {
@@ -109,23 +103,26 @@ require(['jquery', 'Vue', 'KeyBord', 'SkinChange'], function($, Vue, KeyBord, Sk
                 if (window.localStorage.getItem('PiFu')) {
                     this.bgchangenex(e, 'bgBingYing');
                     this.bgchangenex(e, 'bgBingYingCf');
+                }else {
+                    this.bgchangenex(0, 'bgBingYing');
+                    this.bgchangenex(0, 'bgBingYingCf');
                 }
             })
         },
         methods: {
             bgchangenex(e, name) {
                 if (name) {
-                    this.$refs[name].style.background = 'url(' + window.location.href + 'images/bg/' + e + '.jpg)' + 'no-repeat'
+                    this.$refs[name].style.background = 'url(images/bg/' + e + '.jpg)' + 'no-repeat'
                     this.$refs[name].style.backgroundSize = 'cover';
                     this.$refs[name].style.backgroundAttachment = 'fixed';
                 } else {
                     setTimeout(() => {
-                        this.$refs['bgBingYing'].style.background = 'url(' + window.location.href + 'images/bg/' + e + '.jpg)' + 'no-repeat'
+                        this.$refs['bgBingYing'].style.background = 'url(images/bg/' + e + '.jpg)' + 'no-repeat'
                         this.$refs['bgBingYing'].style.backgroundSize = 'cover';
                         this.$refs['bgBingYing'].style.backgroundAttachment = 'fixed';
                     }, 2000)
                     this.$refs['bgBingYingCf'].style.height = '0';
-                    this.$refs['bgBingYingCf'].style.background = 'url(' + window.location.href + 'images/bg/' + e + '.jpg)' + 'no-repeat'
+                    this.$refs['bgBingYingCf'].style.background = 'url(images/bg/' + e + '.jpg)' + 'no-repeat'
                     this.$refs['bgBingYingCf'].style.backgroundSize = 'cover';
                     this.$refs['bgBingYingCf'].style.backgroundAttachment = 'fixed';
                     this.$refs['bgBingYingCf'].style.height = '100%';
@@ -284,53 +281,3 @@ require(['jquery', 'Vue', 'KeyBord', 'SkinChange'], function($, Vue, KeyBord, Sk
     })
 
 });
-
-function ajax() {
-    var ajaxData = {
-        type: arguments[0].type || "GET",
-        url: arguments[0].url || "",
-        async: arguments[0].async || "true",
-        data: arguments[0].data || null,
-        dataType: arguments[0].dataType || "text",
-        contentType: arguments[0].contentType || "application/x-www-form-urlencoded",
-        beforeSend: arguments[0].beforeSend || function() {},
-        success: arguments[0].success || function() {},
-        error: arguments[0].error || function() {}
-    }
-    ajaxData.beforeSend()
-    var xhr = createxmlHttpRequest();
-    xhr.responseType = ajaxData.dataType;
-    xhr.open(ajaxData.type, ajaxData.url, ajaxData.async);
-    xhr.setRequestHeader("Content-Type", ajaxData.contentType);
-    xhr.send(convertData(ajaxData.data));
-    xhr.onreadystatechange = function() {
-        if (xhr.readyState == 4) {
-            if (xhr.status == 200) {
-                ajaxData.success(xhr.response)
-            } else {
-                ajaxData.error()
-            }
-        }
-    }
-}
-
-function createxmlHttpRequest() {
-    if (window.ActiveXObject) {
-        return new ActiveXObject("Microsoft.XMLHTTP");
-    } else if (window.XMLHttpRequest) {
-        return new XMLHttpRequest();
-    }
-}
-
-function convertData(data) {
-    if (typeof data === 'object') {
-        var convertResult = "";
-        for (var c in data) {
-            convertResult += c + "=" + data[c] + "&";
-        }
-        convertResult = convertResult.substring(0, convertResult.length - 1)
-        return convertResult;
-    } else {
-        return data;
-    }
-}

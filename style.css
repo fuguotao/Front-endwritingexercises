@@ -244,8 +244,8 @@ body {
 #QiTaGongNeng #BgListcc {
     position:  absolute;
     top: 0;
-    left:  50px;
-    background:  red;
+    left: 100px;
+    background: #93939375;
     width:  100px;
 }
 #QiTaGongNeng #BgListcc ul{
