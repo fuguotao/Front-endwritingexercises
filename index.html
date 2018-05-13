@@ -18,33 +18,21 @@
     <div id="app">
         <div ref="bgBingYing" :class='["PiFu"+PiFu]' class="bgBingYing"></div>
         <div ref="bgBingYingCf" :class='["PiFu"+PiFu]' class="bgBingYing"></div>
-        <div class="main">
+        <div v-cloak class="main">
             <div id="QiTaGongNeng">
                 <div class="qiehuanzhuti">
-                    <Skin-Change v-on:bgchangenex="bgchangenex"></Skin-Change>
+                    <Skin-Change :skinchangedata="PiFu" v-on:bgchangenex="bgchangenex"></Skin-Change>
                 </div>
             </div>
-            <div class="layout QianDuanBiaoTi">前端打字练习</div>
+            <div class="layout QianDuanBiaoTi">前端打字练习Vue+Juqery+NiceScroll+Require</div>
             <div class="layout">
                 <div class="Tabsyz">
                     <ul>
-                        <li>
-                            <a class="active" href="javascript:">中文</a>
+                        <li v-for="(item,index) in TabWordChange" :key="index">
+                            <a :class="[{'active':index == TabWord_show},{'disabled':!IsKaishi.type}]" href="javascript:" @click="changeWord(item.type,item.class,index)">{{item.name}}</a>
                         </li>
                         <li>
-                            <a href="javascript:">HTML练习</a>
-                        </li>
-                        <li>
-                            <a href="javascript:">CSS练习</a>
-                        </li>
-                        <li>
-                            <a href="javascript:">JS练习</a>
-                        </li>
-                        <li>
-                            <a href="javascript:">英文</a>
-                        </li>
-                        <li>
-                            <a href="javascript:">自定义内容</a>
+                            <a href="javascript:" v-show="0">自定义内容</a>
                         </li>
                     </ul>
                 </div>
@@ -55,7 +43,7 @@
                         <span>进度：<b>{{YuanNeiRong.length <= 0 ? "0.00%" : ((Math.round(XieRuNeiRong.join('').length /YuanNeiRong.length * 10000) / 100.00).toFixed(2) + "%")}}</b></span>
                         <span>正确率：<b>{{ZQL}}%</b></span>
                         <button class="success" v-if="IsKaishi.type" @click="beginDaZi('begin')">开始</button>
-                        <button class="error" v-if="!IsKaishi.type" @click="beginDaZi('end')">结束</button>
+                        <button class="error" v-if="!IsKaishi.type" @click="beginDaZi('end')">暂停</button>
                         <button class="primary" v-if="!IsKaishi.type" @click="ChongXinKaiShi">重新开始</button>
                     </div>
                 </div>
@@ -69,17 +57,18 @@
                 </div>
 
 
-                <div class="main">
+                <div class="dazimain">
                     <div id="ZheZhao" v-show="IsKaishi.type">{{IsKaishi.content}}</div>
-
-                    <div class="XieZiBan" v-for="(mmc,iic) in DaDuanLuoChaiFens" :key="iic">
-                        <div class="CanKao">
-                            <span class="CanKaoBanZiTi" v-for="(m,i) in mmc" :key="i" :class="{red: m !== WatchWord[iic][i]&&typeof WatchWord[iic][i]!=='undefined',green:m === WatchWord[iic][i]}">{{m}}</span>
-                        </div>
-                        <div class="NeiRong" ref="input01">
-                            <input :class='["inp"+iic]' v-model="XieRuNeiRong[iic]">
-                            <div class="PositionWord">
-                                <span v-for="(m,i) in WatchWord[iic]" :class="{red:m!==DaZiLieBiao[i]}">{{m}}</span>
+                    <div ref="XieZiBanMain_con" class="XieZiBanMain_con">
+                        <div class="XieZiBan" v-for="(mmc,iic) in DaDuanLuoChaiFens" :key="iic">
+                            <div class="CanKao">
+                                <span class="CanKaoBanZiTi" v-for="(m,i) in mmc" :key="i" :class="{red: m !== WatchWord[iic][i]&&typeof WatchWord[iic][i]!=='undefined',green:m === WatchWord[iic][i]}">{{m}}</span>
+                            </div>
+                            <div class="NeiRong" ref="input01">
+                                <input :class='["inp"+iic]' v-model="XieRuNeiRong[iic]">
+                                <div class="PositionWord">
+                                    <span v-for="(m,i) in WatchWord[iic]" :class="{red:m!==DaZiLieBiao[i]}">{{m}}</span>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -98,8 +87,6 @@
     </div>
 
     <script src="js/require.js"></script>
-
-
     <!-- <script src="js/require.js" defer async="true"></script> -->
     <script src="js/main.js"></script>
 </body>

@@ -19,8 +19,12 @@ body,
     text-shadow: 1px 1px 5px #ff7171;
 }
 
+[v-cloak] {
+    display: none;
+}
+
 button {
-    padding: 8px 15px;
+    padding: 7px 15px;
     border: none;
     display: inline;
     border-radius: 3px;
@@ -84,7 +88,7 @@ body {
 }
 
 body {
-    font-size: 18px;
+    font-size: 14px;
 }
 
 #app {
@@ -97,7 +101,7 @@ body {
     margin: 10px auto;
     background: rgba(255, 255, 255, .8);
     border-radius: 5px;
-    padding: 20px;
+    padding: 15px 20px;
 }
 
 .Tabsyz {}
@@ -119,15 +123,20 @@ body {
     display: inline-block;
     background: #ffffff85;
     margin-right: 10px;
-    color: #ff7777;
-    border: 1px solid #ffc0c0;
+    color: #47b1ff;
+    border: 1px solid #73c4ff;
     border-radius: 3px;
 }
 
 .Tabsyz ul li a.active {
-    background: #ff4e4e;
+    background: #47b1ff;
     color: #fff;
-    border-color: red;
+    border-color: #00a1ff;
+}
+
+.Tabsyz ul li a.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
 }
 
 .NeiRong {
@@ -138,6 +147,15 @@ body {
     position: relative;
     overflow: hidden;
     border-radius: 5px;
+}
+
+.dazimain {
+    position: relative;
+}
+
+.XieZiBanMain_con {
+    height: 200px;
+    overflow-y: scroll;
 }
 
 .PositionWord {
@@ -155,10 +173,10 @@ body {
     height: 100%;
     z-index: 100;
     background: rgba(255, 255, 255, .8);
-    font-size: 30px;
-    color: #ff00c8;
+    font-size: 20px;
+    color: #0093ff;
     text-align: center;
-    line-height: 362px;
+    line-height: 200px;
 }
 
 .bgBingYing {
@@ -175,7 +193,7 @@ body {
 
 #QiTaGongNeng {
     position: fixed;
-    z-index: 4;
+    z-index: 10000;
     left: 0;
     height: 100%;
     width: 100px;
@@ -185,18 +203,18 @@ body {
 }
 
 .compareword {
-    font-size: 14px;
-    background: #ffe1ee;
-    padding: 10px;
-    border: 1px solid #ff57d2;
+    font-size: 12px;
+    background: #47b1ff29;
+    padding: 8px 7px;
+    border: 1px solid #47b1ff;
     border-radius: 3px;
-    color: #65666d;
     margin: 10px 0;
+    color: red;
 }
 
 #app .QianDuanBiaoTi {
-    margin: 10px auto;
-    font-size: 20px;
+    margin: 15px auto;
+    font-size: 18px;
     font-weight: 800;
     color: #4e4e4e;
 }
@@ -206,20 +224,24 @@ body {
     margin: 10px auto;
     /* border: 1px solid #ffffff26; */
     width: 80%;
+    cursor: pointer;
 }
 
 .HuanFu .img {
-    /* height: 113px; */
+    /* height: 40px; */
     text-align: center;
+    /* width: 80px; */
+    margin: 0 auto;
 }
 
 .HuanFu .img img {
-    width: 75px;
-    height: 75px;
+    width: 50px;
     /* text-align:  center; */
     display: block;
-    border: 1px solid #ffffff26;
+    /* solid #ffffff26; */
     border-radius: 50%;
+    height: 50px;
+    margin: 0 auto;
 }
 
 .jshiqi_con {
@@ -233,32 +255,53 @@ body {
     /* width: 71px; */
     padding: 6px 0px;
     text-align: center;
-    background: #ff5151;
-    border-radius: 3px;
-    margin-top: 10px;
+    /* background: #ff5151; */
+    /* border-radius: 3px; */
+    margin-top: 0px;
     color: #ffffff;
-    /* border: 1px solid #4646466b; */
+    border-bottom: 1px solid #ffffff1f;
     font-size: 12px;
 }
 
 #QiTaGongNeng #BgListcc {
-    position:  absolute;
+    position: fixed;
     top: 0;
     left: 100px;
     background: #3c3c3c75;
-    width:  100px;
+    width: 100px;
+    z-index: 10000000;
+    overflow-y: scroll;
+    height: 100%;
 }
-#QiTaGongNeng #BgListcc ul{
+
+#QiTaGongNeng #BgListcc ul {}
+
+#QiTaGongNeng #BgListcc ul li {
+    display: block;
+    float: none;
+    text-align: center;
+    cursor: pointer;
+    padding: 5px 0;
+    border-bottom: 1px solid #0000000d;
+    transition: all ease 0.3s;
 }
-#QiTaGongNeng #BgListcc ul li{
-    display:  block;
-    float:  none;
-    text-align:  center;
+
+#QiTaGongNeng #BgListcc ul li.active,
+#QiTaGongNeng #BgListcc ul li:hover {
+    background: #00000073;
+    color: #b2b2b2;
 }
-#QiTaGongNeng #BgListcc ul li .Bgli_img{}
-#QiTaGongNeng #BgListcc ul li .Bgli_img img{
-    width:  50px;
-    height:  50px;
+
+#QiTaGongNeng #BgListcc ul li .Bgli_img {}
+
+#QiTaGongNeng #BgListcc ul li .Bgli_img img {
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
 }
-#QiTaGongNeng #BgListcc ul li .Bgli_tit{}
+
+#QiTaGongNeng #BgListcc ul li .Bgli_tit {
+    /* border-bottom: 1px solid #0000003b; */
+    margin: 6px 0px;
+    font-weight: 800;
+}

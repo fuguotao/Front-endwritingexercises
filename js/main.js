@@ -4,11 +4,14 @@ require.config({
         jquery: 'jquery-1.12.4.min',
         Vue: 'vue',
         KeyBord: 'keybord',
-        SkinChange: 'skin'
+        SkinChange: 'skin',
+        // keybordminjquery: 'keyboard.min'
+        word: 'word',
+        nicescroll: './plugin/jquery.nicescroll.min'
     }
 });
 
-require(['jquery', 'Vue', 'KeyBord', 'SkinChange'], function($, Vue, KeyBord, SkinChange) {
+require(['jquery', 'Vue', 'KeyBord', 'SkinChange', 'word', 'nicescroll'], function($, Vue, KeyBord, SkinChange, word, nicescroll) {
     Vue.config.devtools = true;
     var vm = new Vue({
         el: '#app',
@@ -16,26 +19,11 @@ require(['jquery', 'Vue', 'KeyBord', 'SkinChange'], function($, Vue, KeyBord, Sk
         data: {
             IsKaishi: {
                 type: true,
-                content: '回车键开始和暂停',
+                content: 'ESC开始和暂停',
                 isChongXin: false,
                 ShuRuFaType: '请保持中文输入法，注意中英文标点',
             },
-            YuanNeiRong: `html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, 
-            strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, 
-            tfoot, thead, tr, th, td ,textarea,input { margin:0; padding:0;  }
-            address,cite,dfn,em,var, i {font-style:normal;}
-            body {font-size: 16px; line-height: 1.5; font-family:'Microsoft Yahei','simsun','arial','tahoma';  color: #222; background: #eee; }
-            table { border-collapse:collapse; border-spacing:0; }
-            h1, h2, h3, h4, h5, h6, th { font-size: 100%; font-weight: normal; }
-            button,input,select,textarea{font-size:100%;}
-            fieldset,img{border:0;}
-            a { text-decoration: none; color: #666; background: none }
-            ul, ol { list-style: none; }
-            :focus{ outline:none;}
-            .clearfix{ clear: both; content: ""; display: block; overflow: hidden }
-            .clear{clear: both;}
-            .fl{ float: left; }
-            .fr{float: right;}`,
+            YuanNeiRong: '',
             DaZiLieBiao: [],
             XieRuNeiRong: [],
             DaDuanLuoChaiFens: [],
@@ -47,7 +35,16 @@ require(['jquery', 'Vue', 'KeyBord', 'SkinChange'], function($, Vue, KeyBord, Sk
             },
             t: null,
             ZQL: '0.00',
-            PiFu: '0'
+            PiFu: 0,
+            ChaiFen: 62,
+            TabWordChange: [
+                { name: 'HTML练习', type: 'html', class: 'e' },
+                { name: 'CSS练习', type: 'css', class: 'e' },
+                { name: 'JS练习', type: 'javascript', class: 'e' },
+                { name: '中文', type: 'chinese', class: 'z' },
+                { name: '英文', type: 'english', class: 'e' },
+            ],
+            TabWord_show: 0,
         },
         directives: {
             focus: {
@@ -62,16 +59,20 @@ require(['jquery', 'Vue', 'KeyBord', 'SkinChange'], function($, Vue, KeyBord, Sk
             }
         },
         computed: {
+            //监听内容的变化
             WatchWord() {
                 var aa = [];
-                this.XieRuNeiRong.forEach((i, c, v) => {
+                if (this.XieRuNeiRong.length > 0) {
+                    this.XieRuNeiRong.forEach((i, c, v) => {
                         if (i.length) {
                             aa.push(i.split(""))
                         } else {
                             aa.push(i)
                         }
                     })
-                    // return this.XieRuNeiRong.split("");
+                }
+
+                // return this.XieRuNeiRong.split("");
                 return aa;
             },
             DaDuanLuoChaiFen() {
@@ -82,13 +83,16 @@ require(['jquery', 'Vue', 'KeyBord', 'SkinChange'], function($, Vue, KeyBord, Sk
 
             }
         },
-        created() {
+        beforeCreate() {
 
+        },
+        created() {
+            this.YuanNeiRong = word[this.TabWordChange[0].type]
             this.init();
             var that = this;
             document.onkeydown = function(event) {
                 var event = event || window.event;
-                if (event.keyCode == 13) {
+                if (event.keyCode == 27) {
                     that.beginDaZi();
                     that.KaiQiShuRu = 0;
                 }
@@ -99,17 +103,54 @@ require(['jquery', 'Vue', 'KeyBord', 'SkinChange'], function($, Vue, KeyBord, Sk
 
         mounted() {
             this.$nextTick(() => {
-                var e = window.localStorage.getItem('PiFu');
+                var e = window.localStorage.getItem('PiFu') - 0;
                 if (window.localStorage.getItem('PiFu')) {
                     this.bgchangenex(e, 'bgBingYing');
                     this.bgchangenex(e, 'bgBingYingCf');
-                }else {
+                } else {
                     this.bgchangenex(0, 'bgBingYing');
                     this.bgchangenex(0, 'bgBingYingCf');
                 }
+                $(this.$refs.XieZiBanMain_con).niceScroll({
+                    cursorwidth: "2px", // 滚动条的宽度，单位：便素
+                    cursorborder: "none", // CSS方式定义滚动条边框
+                    cursorborderradius: "0px", // 滚动条圆角（像素）
+                    scrollspeed: 150, // 滚动速度
+                    mousescrollstep: 40, // 鼠标滚轮的滚动速度 (像素)
+                });
+
+
             })
         },
         methods: {
+            changeWord(type, ez, i) {
+                if (!this.IsKaishi.type) {
+                    return;
+                } else {
+                    this.YuanNeiRong = word[type];
+                    switch (type) {
+                        case 'css':
+                            this.ChaiFen = 79
+                            break;
+                        case 'javascript':
+                            this.ChaiFen = 79
+                        case 'html':
+                            this.ChaiFen = 62
+                            break;
+                        case 'chinese':
+                            this.ChaiFen = 40
+                            break;
+                        case 'english':
+                            this.ChaiFen = 79
+                    }
+                }
+
+                // ez == 'e' ? this.ChaiFen = 79 : this.ChaiFen = 40;
+                // this.ChongXinKaiShi();
+                this.TabWord_show = i;
+                // this.beginDaZi('end')
+                this.init();
+            },
             bgchangenex(e, name) {
                 if (name) {
                     this.$refs[name].style.background = 'url(images/bg/' + e + '.jpg)' + 'no-repeat'
@@ -131,16 +172,24 @@ require(['jquery', 'Vue', 'KeyBord', 'SkinChange'], function($, Vue, KeyBord, Sk
                 this.PiFu = e;
             },
             init() {
+                //对打字列表进行拆分
+                this.time = {
+                    小时: '00',
+                    分钟: '00',
+                    秒: '00'
+                };
                 var that = this;
-
-                this.DaZiLieBiao = this.YuanNeiRong.replace(/\s/ig, '').split(""); //去空格
+                this.DaDuanLuoChaiFens = [];
+                this.XieRuNeiRong = [];
+                // this.DaZiLieBiao = this.YuanNeiRong.replace(/\s/ig, '').split(""); //去空格
+                this.DaZiLieBiao = this.YuanNeiRong.split("");; //
                 // console.log(this.WatchWord[5]);
                 // this.DaZiLieBiao.forEach((m,i,v)=>{
-                if (this.DaZiLieBiao.length > 40) {
-                    var hang = this.DaZiLieBiao.length % 40 == 0 ? parseInt(this.DaZiLieBiao.length / 40) : parseInt(this.DaZiLieBiao.length / 40) + 1;
+                if (this.DaZiLieBiao.length > that.ChaiFen) {
+                    var hang = this.DaZiLieBiao.length % that.ChaiFen == 0 ? parseInt(this.DaZiLieBiao.length / that.ChaiFen) : parseInt(this.DaZiLieBiao.length / that.ChaiFen) + 1;
                     for (var c = 0; c < hang; c++) {
-                        // var cc = v.splice(0,40)
-                        this.DaDuanLuoChaiFens.push(this.DaZiLieBiao.splice(0, 40));
+                        // var cc = v.splice(0,that.ChaiFen)
+                        this.DaDuanLuoChaiFens.push(this.DaZiLieBiao.splice(0, that.ChaiFen));
                         this.XieRuNeiRong.push([])
                     }
                 } else {
@@ -207,10 +256,9 @@ require(['jquery', 'Vue', 'KeyBord', 'SkinChange'], function($, Vue, KeyBord, Sk
 
             },
             ChongXinKaiShi() {
-                var that = this;
                 this.IsKaishi.isChongXin = !this.IsKaishi.isChongXin;
-                this.IsKaishi.content = '回车键开始和暂停';
-                that.$refs.input01[0].querySelector('input').focus();
+                this.IsKaishi.content = 'ESC开始和暂停';
+                this.$refs.input01[0].querySelector('input').focus();
 
                 // this.init();
                 this.time = {
@@ -219,11 +267,11 @@ require(['jquery', 'Vue', 'KeyBord', 'SkinChange'], function($, Vue, KeyBord, Sk
                     秒: '00'
                 };
                 // that.$refs.input01.forEach((element, i) => {
-                that.XieRuNeiRong.forEach((ele, i) => {
-                    that.XieRuNeiRong[i] = []
+                this.XieRuNeiRong.forEach((ele, i) => {
+                    this.XieRuNeiRong[i] = []
                 })
                 this.WatchWord.forEach((ele, i) => {
-                    that.WatchWord[i] = []
+                    this.WatchWord[i] = []
                 })
             }
         },
@@ -233,7 +281,7 @@ require(['jquery', 'Vue', 'KeyBord', 'SkinChange'], function($, Vue, KeyBord, Sk
                     var ZhunQueLv = [];
                     newValue.forEach((i, c, v) => {
                         // console.log(c)
-                        if (i instanceof Array) {
+                        if (i instanceof Array && i) {
                             if (i.length >= this.DaDuanLuoChaiFens[c].length) {
                                 if (this.$refs.input01.length - 1 > c) {
                                     this.$refs.input01[c + 1].querySelector('input').focus();
@@ -261,10 +309,16 @@ require(['jquery', 'Vue', 'KeyBord', 'SkinChange'], function($, Vue, KeyBord, Sk
                     this.ZQL = (this.XieRuNeiRong.join('').length - ZhunQueLv.length) <= 0 ? '0.00' : (((this.XieRuNeiRong.join('').length - ZhunQueLv.length) * 100 / this.XieRuNeiRong.join('').length).toFixed(2)).toString();
                     // console.log(this.XieRuNeiRong.join('').length)
 
-                    if (this.XieRuNeiRong.join('').length >= this.YuanNeiRong.replace(/\s/ig, '').split("").length) {
+                    // if (this.XieRuNeiRong.join('').length >= this.YuanNeiRong.replace(/\s/ig, '').split("").length) {
+                    if (this.XieRuNeiRong.join('').length >= this.YuanNeiRong.split("").length) { //不去空格
+
                         //当写入完成结束时
-                        this.IsKaishi.content = `打字结束,您的打字时间为${this.time.小时}:${this.time.分钟}:${this.time.秒} 回车键重新开始`;
+                        debugger
+                        this.IsKaishi.content = `打字结束,您的打字时间为${this.time.小时}:${this.time.分钟}:${this.time.秒} Esc重新开始`;
                         clearTimeout(this.t);
+                        this.$refs.input01.forEach((element, i) => {
+                            this.$refs.input01[i].querySelector('input').blur()
+                        })
                         this.IsKaishi.type = true;
                         this.IsKaishi.isChongXin = true
                             // this.time = {
