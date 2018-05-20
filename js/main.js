@@ -19,7 +19,7 @@ require(['jquery', 'Vue', 'KeyBord', 'SkinChange', 'word', 'nicescroll'], functi
         data: {
             IsKaishi: {
                 type: true,
-                content: 'ESC开始和暂停',
+                content: '',
                 isChongXin: false,
                 ShuRuFaType: '请保持中文输入法，注意中英文标点',
             },
@@ -47,8 +47,8 @@ require(['jquery', 'Vue', 'KeyBord', 'SkinChange', 'word', 'nicescroll'], functi
             TabWord_show: 0,
         },
         directives: {
+            //自定义聚焦指令
             focus: {
-                // directive definition
                 inserted: function(el, {
                     value
                 }) {
@@ -72,15 +72,16 @@ require(['jquery', 'Vue', 'KeyBord', 'SkinChange', 'word', 'nicescroll'], functi
                     })
                 }
 
-                // return this.XieRuNeiRong.split("");
                 return aa;
             },
             DaDuanLuoChaiFen() {
-                // for(let i=this.YuanNeiRong.length;i--){
-                //
-                // }
-                // var cab =  this.DaZiLieBiao.concat();
 
+            },
+            UserCumputed() {
+                return ({
+                    speed: this.XieRuNeiRong.join('').length <= 0 || (this.time.小时 - 0) * 120 + (this.time.分钟 - 0) * 60 + (this.time.秒 - 0) <= 0 ? "0" : Math.round((this.XieRuNeiRong.join('').length / ((this.time.小时 - 0) * 120 + (this.time.分钟 - 0) * 60 + (this.time.秒 - 0))) * 60),
+                    jindu: this.YuanNeiRong.length <= 0 ? "0.00%" : ((Math.round(this.XieRuNeiRong.join('').length / this.YuanNeiRong.length * 10000) / 100.00).toFixed(2) + "%")
+                })
             }
         },
         beforeCreate() {
@@ -96,13 +97,19 @@ require(['jquery', 'Vue', 'KeyBord', 'SkinChange', 'word', 'nicescroll'], functi
                     that.beginDaZi();
                     that.KaiQiShuRu = 0;
                 }
-
             };
-
         },
-
         mounted() {
             this.$nextTick(() => {
+                document.oncontextmenu = function(evt) {
+                    evt.preventDefault();
+                }
+
+                document.onselectstart = function(evt) {
+                    evt.preventDefault();
+                };
+                this.IsKaishi.content = `<div style="line-height:150px;">ESC开始和暂停</div>`;
+                $(this.$refs.ZheZhaoTip).html(this.IsKaishi.content);
                 var e = window.localStorage.getItem('PiFu') - 0;
                 if (window.localStorage.getItem('PiFu')) {
                     this.bgchangenex(e, 'bgBingYing');
@@ -112,11 +119,13 @@ require(['jquery', 'Vue', 'KeyBord', 'SkinChange', 'word', 'nicescroll'], functi
                     this.bgchangenex(0, 'bgBingYingCf');
                 }
                 $(this.$refs.XieZiBanMain_con).niceScroll({
-                    cursorwidth: "2px", // 滚动条的宽度，单位：便素
+                    cursorwidth: "5px", // 滚动条的宽度，单位：便素
                     cursorborder: "none", // CSS方式定义滚动条边框
                     cursorborderradius: "0px", // 滚动条圆角（像素）
-                    scrollspeed: 150, // 滚动速度
-                    mousescrollstep: 40, // 鼠标滚轮的滚动速度 (像素)
+                    scrollspeed: 550, // 滚动速度
+                    mousescrollstep: 10, // 鼠标滚轮的滚动速度 (像素)
+                    autohidemode: false,
+                    background: "#ddd",
                 });
 
 
@@ -144,11 +153,7 @@ require(['jquery', 'Vue', 'KeyBord', 'SkinChange', 'word', 'nicescroll'], functi
                             this.ChaiFen = 79
                     }
                 }
-
-                // ez == 'e' ? this.ChaiFen = 79 : this.ChaiFen = 40;
-                // this.ChongXinKaiShi();
                 this.TabWord_show = i;
-                // this.beginDaZi('end')
                 this.init();
             },
             bgchangenex(e, name) {
@@ -183,12 +188,9 @@ require(['jquery', 'Vue', 'KeyBord', 'SkinChange', 'word', 'nicescroll'], functi
                 this.XieRuNeiRong = [];
                 // this.DaZiLieBiao = this.YuanNeiRong.replace(/\s/ig, '').split(""); //去空格
                 this.DaZiLieBiao = this.YuanNeiRong.split("");; //
-                // console.log(this.WatchWord[5]);
-                // this.DaZiLieBiao.forEach((m,i,v)=>{
                 if (this.DaZiLieBiao.length > that.ChaiFen) {
                     var hang = this.DaZiLieBiao.length % that.ChaiFen == 0 ? parseInt(this.DaZiLieBiao.length / that.ChaiFen) : parseInt(this.DaZiLieBiao.length / that.ChaiFen) + 1;
                     for (var c = 0; c < hang; c++) {
-                        // var cc = v.splice(0,that.ChaiFen)
                         this.DaDuanLuoChaiFens.push(this.DaZiLieBiao.splice(0, that.ChaiFen));
                         this.XieRuNeiRong.push([])
                     }
@@ -202,10 +204,6 @@ require(['jquery', 'Vue', 'KeyBord', 'SkinChange', 'word', 'nicescroll'], functi
             },
             star() {
                 var that = this;
-                // clearTimeout(t)
-
-                // t = setTimeout(star, 1000);
-
                 if (!that.IsKaishi.type) {
                     that.time.秒 - 0;
                     if (that.time.秒 < 9) {
@@ -237,7 +235,7 @@ require(['jquery', 'Vue', 'KeyBord', 'SkinChange', 'word', 'nicescroll'], functi
                 }
             },
             beginDaZi(cv) {
-                // console.log(this.IsKaishi.type);
+                $(this.$refs.ZheZhaoTip).html('<div style="line-height:150px;">ESC开始</div>');
                 this.IsKaishi.type = !this.IsKaishi.type;
                 var that = this;
                 if (!this.IsKaishi.type) {
@@ -245,7 +243,6 @@ require(['jquery', 'Vue', 'KeyBord', 'SkinChange', 'word', 'nicescroll'], functi
                     that.$refs.input01[0].querySelector('input').focus();
                     if (this.IsKaishi.isChongXin) {
                         this.ChongXinKaiShi()
-                            // })
                     }
                 } else {
                     clearTimeout(this.t);
@@ -257,22 +254,42 @@ require(['jquery', 'Vue', 'KeyBord', 'SkinChange', 'word', 'nicescroll'], functi
             },
             ChongXinKaiShi() {
                 this.IsKaishi.isChongXin = !this.IsKaishi.isChongXin;
-                this.IsKaishi.content = 'ESC开始和暂停';
                 this.$refs.input01[0].querySelector('input').focus();
-
-                // this.init();
                 this.time = {
                     小时: '00',
                     分钟: '00',
                     秒: '00'
                 };
-                // that.$refs.input01.forEach((element, i) => {
                 this.XieRuNeiRong.forEach((ele, i) => {
                     this.XieRuNeiRong[i] = []
                 })
                 this.WatchWord.forEach((ele, i) => {
                     this.WatchWord[i] = []
                 })
+            },
+            DaZiJieShu() {
+                this.IsKaishi.content = `
+                            <style>
+                                .DaZiJieShu{}
+                                .DaZiJieShu span{width:50%;display: inline-block;text-align:right}
+                                .DaZiJieShu b{width:50%;display: inline-block;text-align:left}
+                            </style>
+                            <div style="" class="DaZiJieShu">
+                                <h2>打字结束</h2>
+                                <div><span >打字时间：</span><b style="color:#ff5151;">${this.time.小时}:${this.time.分钟}:${this.time.秒}</b></div>
+                                <div><span>打字速度：</span><b style="color:#ff5151;">${this.UserCumputed.speed}字/分钟</b></div>
+                                <div><span>正确率：</span><b style="color:#ff5151;">${this.ZQL}%</b></div>
+                                <div><span>获得称号：</span><b style="color:#ff5151;">打字专家</b></div>
+                                <div>Esc重新开始</div>
+                            </div>
+                        `;
+                $(this.$refs.ZheZhaoTip).html(this.IsKaishi.content);
+                clearTimeout(this.t);
+                this.$refs.input01.forEach((element, i) => {
+                    this.$refs.input01[i].querySelector('input').blur()
+                })
+                this.IsKaishi.type = true;
+                this.IsKaishi.isChongXin = true
             }
         },
         watch: {
@@ -280,52 +297,27 @@ require(['jquery', 'Vue', 'KeyBord', 'SkinChange', 'word', 'nicescroll'], functi
                 handler(newValue, oldValue) {
                     var ZhunQueLv = [];
                     newValue.forEach((i, c, v) => {
-                        // console.log(c)
                         if (i instanceof Array && i) {
                             if (i.length >= this.DaDuanLuoChaiFens[c].length) {
                                 if (this.$refs.input01.length - 1 > c) {
                                     this.$refs.input01[c + 1].querySelector('input').focus();
                                 }
                                 this.XieRuNeiRong[c] = this.XieRuNeiRong[c].slice(0, this.DaDuanLuoChaiFens[c].length)
-                                    // for(var bbc=0;bbc<=i.length-this.DaDuanLuoChaiFens[c].length;bbc++){
-                                    //     debugger
-                                    //     this.XieRuNeiRong[c].slice()
-                                    // }
-                                    // console.log(this.WatchWord)
                             }
                             i.forEach((ip, cp, vp) => {
-                                // console.log(ip)
                                 if (ip != this.DaDuanLuoChaiFens[c][cp]) {
                                     ZhunQueLv.push(ip);
                                 }
 
-                                // console.log(this.XieRuNeiRong)
                             })
                         }
                     });
-                    // console.log(ZhunQueLv.length);
-                    // console.log()
                     //准确率计算
                     this.ZQL = (this.XieRuNeiRong.join('').length - ZhunQueLv.length) <= 0 ? '0.00' : (((this.XieRuNeiRong.join('').length - ZhunQueLv.length) * 100 / this.XieRuNeiRong.join('').length).toFixed(2)).toString();
-                    // console.log(this.XieRuNeiRong.join('').length)
 
-                    // if (this.XieRuNeiRong.join('').length >= this.YuanNeiRong.replace(/\s/ig, '').split("").length) {
                     if (this.XieRuNeiRong.join('').length >= this.YuanNeiRong.split("").length) { //不去空格
-
                         //当写入完成结束时
-                        debugger
-                        this.IsKaishi.content = `打字结束,您的打字时间为${this.time.小时}:${this.time.分钟}:${this.time.秒} Esc重新开始`;
-                        clearTimeout(this.t);
-                        this.$refs.input01.forEach((element, i) => {
-                            this.$refs.input01[i].querySelector('input').blur()
-                        })
-                        this.IsKaishi.type = true;
-                        this.IsKaishi.isChongXin = true
-                            // this.time = {
-                            //     小时: '00',
-                            //     分钟: '00',
-                            //     秒: '00'
-                            // };
+                        this.DaZiJieShu();
                     }
                 },
                 deep: true

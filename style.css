@@ -3,6 +3,12 @@ body,
     font-family: '微软雅黑', 'Airay';
     margin: 0;
     padding: 0;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 .blue {
@@ -33,7 +39,7 @@ button {
 }
 
 button.success {
-    background: #1bab1b;
+    background: #14bd14;
     color: #fff;
 }
 
@@ -42,8 +48,14 @@ button.error {
     color: #fff;
 }
 
+button.warning {
+    background: #da9f22;
+    color: #fff;
+}
+
 button.primary {
-    background: rgb(245, 245, 245);
+    background: rgb(6, 152, 219);
+    color: #fff;
 }
 
 .CanKaoBanZiTi {
@@ -176,7 +188,8 @@ body {
     font-size: 20px;
     color: #0093ff;
     text-align: center;
-    line-height: 200px;
+    padding: 10px;
+    box-sizing: border-box;
 }
 
 .bgBingYing {
@@ -208,7 +221,7 @@ body {
     padding: 8px 7px;
     border: 1px solid #47b1ff;
     border-radius: 3px;
-    margin: 10px 0;
+    margin: 9px 0;
     color: red;
 }
 
