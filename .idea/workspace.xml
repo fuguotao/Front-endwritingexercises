@@ -2,20 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="df85b758-fe68-4a57-b543-d79758d8def7" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/images/bg/0.jpg" afterPath="$PROJECT_DIR$/images/bg/0.jpg" />
-      <change beforePath="$PROJECT_DIR$/images/bg/1.jpg" afterPath="$PROJECT_DIR$/images/bg/1.jpg" />
-      <change beforePath="$PROJECT_DIR$/images/bg/10.jpg" afterPath="$PROJECT_DIR$/images/bg/10.jpg" />
-      <change beforePath="$PROJECT_DIR$/images/bg/2.jpg" afterPath="$PROJECT_DIR$/images/bg/2.jpg" />
-      <change beforePath="$PROJECT_DIR$/images/bg/3.jpg" afterPath="$PROJECT_DIR$/images/bg/3.jpg" />
-      <change beforePath="$PROJECT_DIR$/images/bg/4.jpg" afterPath="$PROJECT_DIR$/images/bg/4.jpg" />
-      <change beforePath="$PROJECT_DIR$/images/bg/5.jpg" afterPath="$PROJECT_DIR$/images/bg/5.jpg" />
-      <change beforePath="$PROJECT_DIR$/images/bg/6.jpg" afterPath="$PROJECT_DIR$/images/bg/6.jpg" />
-      <change beforePath="$PROJECT_DIR$/images/bg/7.jpg" afterPath="$PROJECT_DIR$/images/bg/7.jpg" />
-      <change beforePath="$PROJECT_DIR$/images/bg/8.jpg" afterPath="$PROJECT_DIR$/images/bg/8.jpg" />
-      <change beforePath="$PROJECT_DIR$/images/bg/9.jpg" afterPath="$PROJECT_DIR$/images/bg/9.jpg" />
-      <change beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
-      <change beforePath="$PROJECT_DIR$/style.css" afterPath="$PROJECT_DIR$/style.css" />
+      <change beforePath="$PROJECT_DIR$/js/word.js" afterPath="$PROJECT_DIR$/js/word.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -29,10 +16,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1219">
+            <state relative-caret-position="-1201">
               <caret line="10" column="41" lean-forward="false" selection-start-line="10" selection-start-column="41" selection-end-line="10" selection-end-column="41" />
               <folding />
             </state>
@@ -71,7 +58,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="main.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/main.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="607">
@@ -124,8 +111,8 @@
       <file leaf-file-name="word.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/word.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="44">
-              <caret line="2" column="860" lean-forward="false" selection-start-line="2" selection-start-column="860" selection-end-line="2" selection-end-column="860" />
+            <state relative-caret-position="431">
+              <caret line="21" column="52" lean-forward="false" selection-start-line="21" selection-start-column="52" selection-end-line="21" selection-end-column="52" />
               <folding />
             </state>
           </provider>
@@ -163,10 +150,10 @@
         <option value="$PROJECT_DIR$/json/word.json" />
         <option value="$PROJECT_DIR$/js/ajax.js" />
         <option value="$PROJECT_DIR$/css/keybord.css" />
-        <option value="$PROJECT_DIR$/js/word.js" />
         <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/js/main.js" />
         <option value="$USER_HOME$/Downloads/201512112005/index.html" />
+        <option value="$PROJECT_DIR$/js/word.js" />
       </list>
     </option>
   </component>
@@ -210,16 +197,6 @@
             <path>
               <item name="dzyx" type="b2602c69:ProjectViewProjectNode" />
               <item name="dzyx" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="dzyx" type="b2602c69:ProjectViewProjectNode" />
-              <item name="dzyx" type="462c0819:PsiDirectoryNode" />
-              <item name="css" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="dzyx" type="b2602c69:ProjectViewProjectNode" />
-              <item name="dzyx" type="462c0819:PsiDirectoryNode" />
-              <item name="images" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="dzyx" type="b2602c69:ProjectViewProjectNode" />
@@ -297,7 +274,7 @@
       <workItem from="1526200974461" duration="7626000" />
       <workItem from="1526392752921" duration="12000" />
       <workItem from="1526788792059" duration="1850000" />
-      <workItem from="1527604889258" duration="1672000" />
+      <workItem from="1527604889258" duration="2471000" />
     </task>
     <task id="LOCAL-00001" summary="gengxintime">
       <created>1522291523745</created>
@@ -317,7 +294,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="58394000" />
+    <option name="totallyTimeSpent" value="59193000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -632,14 +609,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/json/word.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/ajax.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1122">
@@ -668,14 +637,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/word.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="44">
-          <caret line="2" column="860" lean-forward="false" selection-start-line="2" selection-start-column="860" selection-end-line="2" selection-end-column="860" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/plugin/jquery.nicescroll.min.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -688,14 +649,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="10" column="9" lean-forward="true" selection-start-line="10" selection-start-column="9" selection-end-line="10" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1219">
-          <caret line="10" column="41" lean-forward="false" selection-start-line="10" selection-start-column="41" selection-end-line="10" selection-end-column="41" />
           <folding />
         </state>
       </provider>
@@ -715,6 +668,30 @@
             <marker date="1526794983488" expanded="false" signature="11311:11325" ph="..." />
             <marker date="1526794983488" expanded="true" signature="13235:13236" ph="//..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/json/word.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/word.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="431">
+          <caret line="21" column="52" lean-forward="false" selection-start-line="21" selection-start-column="52" selection-end-line="21" selection-end-column="52" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1201">
+          <caret line="10" column="41" lean-forward="false" selection-start-line="10" selection-start-column="41" selection-end-line="10" selection-end-column="41" />
+          <folding />
         </state>
       </provider>
     </entry>
