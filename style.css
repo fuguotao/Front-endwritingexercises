@@ -10,7 +10,9 @@ body,
     -ms-user-select: none;
     user-select: none;
 }
-
+/* html{filter:progid:DXImageTransform.Microsoft.BasicImage(grayscale=1);}
+body {filter:black} */
+/* html {overflow-y:scroll;filter:progid:DXImageTransform.Microsoft.BasicImage(grayscale=1);-webkit-filter: grayscale(100%);} */
 .blue {
     color: blue;
 }
@@ -213,6 +215,7 @@ body {
     background: #0000008a;
     top: 0;
     padding: 20px 0;
+    /* display: none; */
 }
 
 .compareword {
@@ -234,10 +237,13 @@ body {
 
 .HuanFu {
     /* position: relative; */
-    margin: 10px auto;
+    /* margin: 10px auto; */
     /* border: 1px solid #ffffff26; */
-    width: 80%;
-    cursor: pointer;
+    /* width: 80%; */
+    /* cursor: pointer; */
+}
+.HuanFu .Bgtit{
+   display:none; 
 }
 
 .HuanFu .img {
@@ -279,7 +285,7 @@ body {
 #QiTaGongNeng #BgListcc {
     position: fixed;
     top: 0;
-    left: 100px;
+    left: 0;
     background: #3c3c3c75;
     width: 100px;
     z-index: 10000000;
@@ -297,12 +303,13 @@ body {
     padding: 5px 0;
     border-bottom: 1px solid #0000000d;
     transition: all ease 0.3s;
+    color: white;
 }
 
 #QiTaGongNeng #BgListcc ul li.active,
 #QiTaGongNeng #BgListcc ul li:hover {
     background: #00000073;
-    color: #b2b2b2;
+    color: #ff4242;
 }
 
 #QiTaGongNeng #BgListcc ul li .Bgli_img {}
@@ -317,4 +324,5 @@ body {
     /* border-bottom: 1px solid #0000003b; */
     margin: 6px 0px;
     font-weight: 800;
+    /* color: white; */
 }
